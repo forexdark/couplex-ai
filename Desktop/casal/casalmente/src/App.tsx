@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { CoupleProvider } from './contexts/CoupleContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 
 // Pages
 import Home from './pages/Home';
@@ -56,9 +59,12 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
+    <ThemeProvider>
+      <AuthProvider>
+        <CoupleProvider>
+          <NotificationProvider>
+            <Router>
+              <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/linguagens-do-amor" element={<LanguagesOfLove />} />
@@ -114,8 +120,11 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
-    </AuthProvider>
-  );
+            </NotificationProvider>
+          </CoupleProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    );
 }
 
 export default App;
