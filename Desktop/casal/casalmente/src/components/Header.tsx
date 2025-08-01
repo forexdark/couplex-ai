@@ -27,7 +27,7 @@ export default function Header() {
               <h1 className="text-xl font-bold font-display bg-gradient-to-r from-rose-600 to-primary-600 bg-clip-text text-transparent">
                 CoupleX AI
               </h1>
-              <p className="text-xs text-neutral-500 -mt-1">Terapeuta Digital</p>
+              <p className="text-xs text-neutral-500 -mt-1">Mentora dos Relacionamentos</p>
             </div>
           </Link>
 
@@ -50,12 +50,15 @@ export default function Header() {
               </>
             ) : (
               <>
-                <Link to="/#funcionalidades" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
+                <a href="#funcionalidades" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
                   Funcionalidades
-                </Link>
-                <Link to="/#sobre" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
-                  Sobre
-                </Link>
+                </a>
+                <a href="#precos" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
+                  Preços
+                </a>
+                <a href="#como-funciona" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
+                  Como Funciona
+                </a>
               </>
             )}
           </nav>
