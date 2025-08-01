@@ -6,6 +6,9 @@ import Home from './pages/Home';
 import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
 import LanguagesOfLove from './pages/LanguagesOfLove';
+import EmotionalDiary from './pages/EmotionalDiary';
+import CoupleCalendar from './pages/CoupleCalendar';
+import AIChat from './pages/AIChat';
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -65,6 +68,21 @@ function App() {
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/chat" element={
+            <ProtectedRoute>
+              <AIChat />
+            </ProtectedRoute>
+          } />
+          <Route path="/diario-emocional" element={
+            <ProtectedRoute>
+              <EmotionalDiary />
+            </ProtectedRoute>
+          } />
+          <Route path="/calendario-casal" element={
+            <ProtectedRoute>
+              <CoupleCalendar />
             </ProtectedRoute>
           } />
           

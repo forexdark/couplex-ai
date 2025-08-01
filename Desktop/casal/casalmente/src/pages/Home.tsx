@@ -64,7 +64,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {[
               {
                 icon: '💔',
@@ -103,10 +103,10 @@ export default function Home() {
                 color: 'border-gray-200 bg-gray-50'
               }
             ].map((problem, index) => (
-              <div key={index} className={`card hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1 ${problem.color} border-2`}>
-                <div className="text-5xl mb-4">{problem.icon}</div>
-                <h3 className="text-xl font-bold font-display text-neutral-900 mb-3">{problem.title}</h3>
-                <p className="text-neutral-700 leading-relaxed">{problem.description}</p>
+              <div key={index} className={`card hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1 ${problem.color} border-2 text-center sm:text-left`}>
+                <div className="text-4xl lg:text-5xl mb-4 flex justify-center sm:justify-start">{problem.icon}</div>
+                <h3 className="text-lg lg:text-xl font-bold font-display text-neutral-900 mb-3">{problem.title}</h3>
+                <p className="text-neutral-700 leading-relaxed text-sm lg:text-base">{problem.description}</p>
               </div>
             ))}
           </div>
@@ -334,14 +334,14 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <Link
-                    to="/linguagens-do-amor"
+                    to="/auth?mode=signup"
                     className="btn-primary text-lg px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
                     <span className="mr-2">💝</span>
                     Descobrir Minha Linguagem
                   </Link>
                   <p className="text-sm text-neutral-500 mt-3">
-                    ⚡ Leva apenas 2 minutos
+                    💎 Recurso exclusivo dos planos Paixão e Amor
                   </p>
                 </div>
               </div>
@@ -369,9 +369,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {/* Plano Grátis */}
-            <div className="card border-2 border-neutral-200 hover:border-neutral-300 transition-all duration-300 relative">
+            <div className="card border-2 border-neutral-200 hover:border-neutral-300 transition-all duration-300 relative flex flex-col">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-gradient-to-r from-gray-400 to-neutral-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <span className="text-white text-2xl">🌱</span>
@@ -384,7 +384,7 @@ export default function Home() {
                 <p className="text-neutral-600 text-sm">Para conhecer nossa mentora</p>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-sm">
                   <span className="text-green-500 mr-3">✓</span>
                   <span>3 conversas por dia com a mentora</span>
@@ -399,25 +399,27 @@ export default function Home() {
                 </li>
                 <li className="flex items-center text-sm text-neutral-400">
                   <span className="text-neutral-300 mr-3">✗</span>
+                  <span>Funcionalidades de casal</span>
+                </li>
+                <li className="flex items-center text-sm text-neutral-400">
+                  <span className="text-neutral-300 mr-3">✗</span>
                   <span>Planos personalizados</span>
                 </li>
                 <li className="flex items-center text-sm text-neutral-400">
                   <span className="text-neutral-300 mr-3">✗</span>
                   <span>Modo crise 24/7</span>
                 </li>
-                <li className="flex items-center text-sm text-neutral-400">
-                  <span className="text-neutral-300 mr-3">✗</span>
-                  <span>Relatórios mensais</span>
-                </li>
               </ul>
 
-              <Link to="/auth?mode=signup" className="btn-secondary w-full text-center">
-                Começar Grátis
-              </Link>
+              <div className="mt-auto">
+                <Link to="/auth?mode=signup" className="btn-secondary w-full text-center">
+                  Começar Grátis
+                </Link>
+              </div>
             </div>
 
-            {/* Plano Ternura - Mais Popular */}
-            <div className="card border-2 border-rose-300 hover:border-rose-400 transition-all duration-300 relative transform scale-105">
+            {/* Plano Paixão - Mais Popular */}
+            <div className="card border-2 border-rose-300 hover:border-rose-400 transition-all duration-300 relative lg:transform lg:scale-105 flex flex-col">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-gradient-to-r from-rose-500 to-primary-500 text-white px-6 py-2 rounded-full text-sm font-bold">
                   ✨ Mais Popular
@@ -428,16 +430,16 @@ export default function Home() {
                 <div className="w-16 h-16 bg-gradient-to-r from-rose-500 to-primary-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <span className="text-white text-2xl">💕</span>
                 </div>
-                <h3 className="text-2xl font-bold font-display text-neutral-900 mb-2">Ternura</h3>
+                <h3 className="text-2xl font-bold font-display text-neutral-900 mb-2">Paixão</h3>
                 <div className="mb-4">
                   <span className="text-4xl font-bold text-rose-600">R$ 19</span>
                   <span className="text-2xl font-bold text-rose-600">,90</span>
                   <span className="text-neutral-600">/mês</span>
                 </div>
-                <p className="text-neutral-600 text-sm">Para casais que querem se reconectar</p>
+                <p className="text-neutral-600 text-sm">Para casais que querem reacender a paixão</p>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-sm">
                   <span className="text-green-500 mr-3">✓</span>
                   <span><strong>Conversas ilimitadas</strong> com a mentora</span>
@@ -448,11 +450,11 @@ export default function Home() {
                 </li>
                 <li className="flex items-center text-sm">
                   <span className="text-green-500 mr-3">✓</span>
-                  <span><strong>Planos personalizados</strong> de reconexão</span>
+                  <span><strong>Funcionalidades de casal</strong> completas</span>
                 </li>
                 <li className="flex items-center text-sm">
                   <span className="text-green-500 mr-3">✓</span>
-                  <span>Calendário do casal integrado</span>
+                  <span>Calendário e metas do casal</span>
                 </li>
                 <li className="flex items-center text-sm">
                   <span className="text-green-500 mr-3">✓</span>
@@ -464,13 +466,15 @@ export default function Home() {
                 </li>
               </ul>
 
-              <Link to="/auth?mode=signup" className="btn-primary w-full text-center">
-                Escolher Ternura 💕
-              </Link>
+              <div className="mt-auto">
+                <Link to="/auth?mode=signup" className="btn-primary w-full text-center">
+                  Escolher Paixão 💕
+                </Link>
+              </div>
             </div>
 
             {/* Plano Amor */}
-            <div className="card border-2 border-primary-200 hover:border-primary-300 transition-all duration-300 relative">
+            <div className="card border-2 border-primary-200 hover:border-primary-300 transition-all duration-300 relative flex flex-col">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-rose-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <span className="text-white text-2xl">❤️</span>
@@ -484,10 +488,10 @@ export default function Home() {
                 <p className="text-neutral-600 text-sm">Para casais que querem o máximo</p>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-sm">
                   <span className="text-green-500 mr-3">✓</span>
-                  <span><strong>Tudo do plano Ternura</strong></span>
+                  <span><strong>Tudo do plano Paixão</strong></span>
                 </li>
                 <li className="flex items-center text-sm">
                   <span className="text-green-500 mr-3">✓</span>
@@ -503,7 +507,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-center text-sm">
                   <span className="text-green-500 mr-3">✓</span>
-                  <span>Metas avançadas para o casal</span>
+                  <span>Surpresas personalizadas</span>
                 </li>
                 <li className="flex items-center text-sm">
                   <span className="text-green-500 mr-3">✓</span>
@@ -511,9 +515,11 @@ export default function Home() {
                 </li>
               </ul>
 
-              <Link to="/auth?mode=signup" className="btn-primary w-full text-center bg-gradient-to-r from-primary-500 to-rose-600">
-                Escolher Amor ❤️
-              </Link>
+              <div className="mt-auto">
+                <Link to="/auth?mode=signup" className="btn-primary w-full text-center bg-gradient-to-r from-primary-500 to-rose-600">
+                  Escolher Amor ❤️
+                </Link>
+              </div>
             </div>
           </div>
 

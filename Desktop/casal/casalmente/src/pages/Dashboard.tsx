@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { useAuth } from '../hooks/useAuth';
 
@@ -43,29 +44,63 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Daily Tip */}
-        {dailyTip && (
-          <div className="card bg-gradient-to-r from-rose-50 to-primary-50 border-2 border-rose-200 mb-8 relative">
-            <button 
-              onClick={() => setDailyTip(false)}
-              className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600"
-            >
-              ✕
-            </button>
+        {/* Today's Overview */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+          {/* Today Info Card */}
+          <div className="card bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-rose-500 to-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-xl">🤖</span>
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-xl">📅</span>
               </div>
-              <div>
-                <h3 className="font-bold text-neutral-900 mb-2">Dica do Dia</h3>
-                <p className="text-neutral-700 mb-4">
-                  {dailyTips[Math.floor(Math.random() * dailyTips.length)]}
-                </p>
-                <button className="btn-primary text-sm">Vou tentar isso! 💕</button>
+              <div className="flex-1">
+                <h3 className="font-bold text-neutral-900 mb-2">Informações de Hoje</h3>
+                <div className="space-y-2 text-sm">
+                  <p className="text-neutral-700">
+                    <strong>Data:</strong> {new Date().toLocaleDateString('pt-BR', { 
+                      weekday: 'long', 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}
+                  </p>
+                  <div className="bg-white/70 rounded-lg p-3 mt-3">
+                    <p className="text-green-700 font-medium mb-1">✅ Agenda de hoje:</p>
+                    <p className="text-neutral-600 text-xs">• Nenhum compromisso do casal hoje</p>
+                    <p className="text-neutral-600 text-xs">• Que tal planejar algo especial? 💕</p>
+                  </div>
+                  <div className="bg-white/70 rounded-lg p-3">
+                    <p className="text-purple-700 font-medium mb-1">💝 Data especial:</p>
+                    <p className="text-neutral-600 text-xs">Não é uma data comemorativa hoje, mas todo dia pode ser especial quando estamos com quem amamos!</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        )}
+
+          {/* Daily Tip */}
+          {dailyTip && (
+            <div className="card bg-gradient-to-r from-rose-50 to-primary-50 border-2 border-rose-200 relative">
+              <button 
+                onClick={() => setDailyTip(false)}
+                className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600"
+              >
+                ✕
+              </button>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-rose-500 to-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-xl">💕</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-neutral-900 mb-2">Dica do Dia</h3>
+                  <p className="text-neutral-700 mb-4">
+                    {dailyTips[Math.floor(Math.random() * dailyTips.length)]}
+                  </p>
+                  <button className="btn-primary text-sm">Vou tentar isso! 💕</button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* Quick Actions */}
         <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -134,10 +169,10 @@ export default function Dashboard() {
             <p className="text-neutral-600 mb-4">
               Precisa de conselhos urgentes? A terapeuta IA está sempre disponível.
             </p>
-            <button className="btn-primary w-full">
+            <Link to="/chat" className="btn-primary w-full text-center">
               <span className="mr-2">🚀</span>
-              Conversar com a IA Terapeuta
-            </button>
+              Conversar com a Mentora
+            </Link>
           </div>
         </div>
 
@@ -146,44 +181,50 @@ export default function Dashboard() {
           {[
             {
               icon: '📝',
-              title: 'Diário do Casal',
-              description: 'Registrem momentos especiais e reflexões juntos',
+              title: 'Diário Emocional',
+              description: 'Registre seus sentimentos e receba orientações personalizadas',
               color: 'from-purple-500 to-pink-500',
-              status: 'soon'
+              link: '/diario-emocional',
+              status: 'available'
             },
             {
               icon: '📅',
-              title: 'Calendário Romântico',
+              title: 'Calendário do Casal',
               description: 'Organizem encontros e datas especiais',
               color: 'from-green-500 to-teal-500',
-              status: 'soon'
+              link: '/calendario-casal',
+              status: 'available'
+            },
+            {
+              icon: '💝',
+              title: 'Quiz Linguagens do Amor',
+              description: 'Descubram as linguagens do amor de vocês',
+              color: 'from-purple-400 to-pink-400',
+              link: '/linguagens-do-amor',
+              status: 'available'
             },
             {
               icon: '🎯',
               title: 'Metas do Relacionamento',
               description: 'Definam e acompanhem objetivos como casal',
               color: 'from-orange-500 to-red-500',
-              status: 'soon'
-            },
-            {
-              icon: '📊',
-              title: 'Relatório Mensal',
-              description: 'Acompanhem a evolução do relacionamento',
-              color: 'from-indigo-500 to-purple-500',
+              link: '#',
               status: 'soon'
             },
             {
               icon: '🎁',
               title: 'Surpresas Personalizadas',
-              description: 'Ideias de presentes e momentos especiais',
+              description: 'Ideias de presentes e momentos especiais baseadas na IA',
               color: 'from-yellow-500 to-orange-500',
+              link: '#',
               status: 'soon'
             },
             {
               icon: '🆘',
               title: 'Modo Crise',
-              description: 'Mediação IA para conflitos urgentes',
+              description: 'Mediação da mentora para conflitos urgentes',
               color: 'from-red-500 to-pink-500',
+              link: '/chat',
               status: 'available'
             }
           ].map((feature, index) => (
@@ -197,16 +238,21 @@ export default function Dashboard() {
               <p className="text-neutral-600 mb-4 text-sm">
                 {feature.description}
               </p>
-              <button 
-                className={`text-sm w-full ${
-                  feature.status === 'available' 
-                    ? 'btn-primary' 
-                    : 'btn-secondary opacity-75'
-                }`}
-                disabled={feature.status !== 'available'}
-              >
-                {feature.status === 'available' ? 'Usar agora' : 'Em breve'}
-              </button>
+              {feature.status === 'available' ? (
+                <Link 
+                  to={feature.link}
+                  className="btn-primary text-sm w-full text-center"
+                >
+                  Usar agora ✨
+                </Link>
+              ) : (
+                <button 
+                  className="btn-secondary opacity-75 text-sm w-full"
+                  disabled
+                >
+                  Em breve 🚧
+                </button>
+              )}
             </div>
           ))}
         </div>
