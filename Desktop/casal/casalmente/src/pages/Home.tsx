@@ -273,6 +273,89 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Languages of Love Section */}
+      <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
+        <div className="container-app">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-8">
+              <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-glow">
+                <span className="text-3xl">💝</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-bold font-display text-neutral-900 mb-6">
+                Descubra sua Linguagem do Amor
+              </h2>
+              <p className="text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+                Baseado no best-seller de Gary Chapman, nosso quiz revela como você expressa e recebe amor. 
+                Conhecer sua linguagem e a do seu parceiro pode transformar completamente o relacionamento!
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-5 gap-4 mb-8">
+              {[
+                { emoji: '💬', name: 'Palavras de Afirmação', color: 'from-blue-400 to-indigo-500' },
+                { emoji: '⏰', name: 'Tempo de Qualidade', color: 'from-green-400 to-teal-500' },
+                { emoji: '🎁', name: 'Presentes', color: 'from-purple-400 to-pink-500' },
+                { emoji: '🤝', name: 'Atos de Serviço', color: 'from-orange-400 to-red-500' },
+                { emoji: '🤗', name: 'Toque Físico', color: 'from-rose-400 to-red-500' }
+              ].map((lang, index) => (
+                <div key={index} className="bg-white/70 backdrop-blur-sm p-4 rounded-2xl border border-white/50 hover:bg-white/90 transition-all duration-300">
+                  <div className={`w-12 h-12 bg-gradient-to-r ${lang.color} rounded-xl flex items-center justify-center mx-auto mb-3`}>
+                    <span className="text-xl">{lang.emoji}</span>
+                  </div>
+                  <h4 className="text-sm font-bold text-neutral-800 leading-tight">{lang.name}</h4>
+                </div>
+              ))}
+            </div>
+
+            <div className="card bg-white/80 backdrop-blur-sm border-2 border-purple-200 mb-8">
+              <div className="flex flex-col lg:flex-row items-center gap-8">
+                <div className="flex-1 text-left">
+                  <h3 className="text-2xl font-bold font-display text-neutral-900 mb-4">
+                    ✨ Quiz Gratuito das 5 Linguagens
+                  </h3>
+                  <ul className="space-y-2 text-neutral-700 mb-6">
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span>6 perguntas baseadas no livro original</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span>Resultado personalizado com dicas exclusivas</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span>Orientações para o seu parceiro também</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span>Compartilhável para descobrirem juntos</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="text-center">
+                  <Link
+                    to="/linguagens-do-amor"
+                    className="btn-primary text-lg px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    <span className="mr-2">💝</span>
+                    Descobrir Minha Linguagem
+                  </Link>
+                  <p className="text-sm text-neutral-500 mt-3">
+                    ⚡ Leva apenas 2 minutos
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <p className="text-neutral-600 text-sm">
+                💡 <strong>Já conhece sua linguagem?</strong> Compartilhe com seu parceiro para que vocês se conectem ainda mais profundamente!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="precos" className="py-20 bg-white">
         <div className="container-app">
