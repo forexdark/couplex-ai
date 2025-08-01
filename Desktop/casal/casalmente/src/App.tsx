@@ -12,6 +12,7 @@ import AIChat from './pages/AIChat';
 import PersonalizedSurprises from './pages/PersonalizedSurprises';
 import RelationshipGoals from './pages/RelationshipGoals';
 import CrisisMode from './pages/CrisisMode';
+import Settings from './pages/Settings';
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -101,6 +102,11 @@ function App() {
           <Route path="/modo-crise" element={
             <ProtectedRoute>
               <CrisisMode />
+            </ProtectedRoute>
+          } />
+          <Route path="/configuracoes" element={
+            <ProtectedRoute>
+              <Settings />
             </ProtectedRoute>
           } />
           

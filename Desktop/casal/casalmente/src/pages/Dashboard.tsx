@@ -112,14 +112,15 @@ export default function Dashboard() {
             <span className="mr-2">🧭</span>
             Acesso Rápido às Funcionalidades
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
             {[
               { icon: '📝', title: 'Diário', link: '/diario-emocional', color: 'purple' },
               { icon: '📅', title: 'Calendário', link: '/calendario-casal', color: 'green' },
               { icon: '💬', title: 'Chat IA', link: '/chat', color: 'blue' },
               { icon: '🎯', title: 'Metas', link: '/metas-relacionamento', color: 'orange' },
               { icon: '🎁', title: 'Surpresas', link: '/surpresas-personalizadas', color: 'yellow' },
-              { icon: '🆘', title: 'Crise', link: '/modo-crise', color: 'red' }
+              { icon: '🆘', title: 'Crise', link: '/modo-crise', color: 'red' },
+              { icon: '⚙️', title: 'Configurações', link: '/configuracoes', color: 'gray' }
             ].map((item, index) => (
               <Link
                 key={index}
@@ -137,205 +138,8 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Today's Overview */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-8">
-          {/* Today Info Card */}
-          <div className="card bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-xl">📅</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-bold text-neutral-900 mb-2">Informações de Hoje</h3>
-                <div className="space-y-2 text-sm">
-                  <p className="text-neutral-700">
-                    <strong>Data:</strong> {new Date().toLocaleDateString('pt-BR', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
-                  </p>
-                  <div className="bg-white/70 rounded-lg p-3 mt-3">
-                    <p className="text-green-700 font-medium mb-1">✅ Agenda de hoje:</p>
-                    <p className="text-neutral-600 text-xs">• Use o Calendário do Casal para agendar compromissos</p>
-                    <p className="text-neutral-600 text-xs">• Que tal planejar algo especial? 💕</p>
-                  </div>
-                  <div className="bg-white/70 rounded-lg p-3">
-                    <p className="text-purple-700 font-medium mb-1">💝 Datas especiais:</p>
-                    <p className="text-neutral-600 text-xs">Configure eventos importantes no seu calendário para não esquecer nunca mais!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Daily Tip */}
-          {dailyTip && (
-            <div className="card bg-gradient-to-r from-rose-50 to-primary-50 border-2 border-rose-200 relative">
-              <button 
-                onClick={() => setDailyTip(false)}
-                className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600"
-              >
-                ✕
-              </button>
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-rose-500 to-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-xl">💕</span>
-                </div>
-                <div>
-                  <h3 className="font-bold text-neutral-900 mb-2">Dica do Dia</h3>
-                  <p className="text-neutral-700 mb-4">
-                    {dailyTips[Math.floor(Math.random() * dailyTips.length)]}
-                  </p>
-                  <button className="btn-primary text-sm">Vou tentar isso! 💕</button>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Mood Check-in - Seção Principal */}
-        <div className="card mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-              <span className="text-white text-2xl">💭</span>
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-neutral-900">Check-in Diário</h2>
-              <p className="text-neutral-600 text-sm">Como você está se sentindo hoje?</p>
-            </div>
-          </div>
-          
-          {currentMood ? (
-            <div className="space-y-6">
-              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                  <p className="text-green-800 font-semibold text-lg mb-2 sm:mb-0">
-                    Hoje você está: <strong>{currentMood}</strong> {currentMoodObj?.emoji}
-                  </p>
-                  <button 
-                    onClick={handleChangeMood}
-                    className="btn-secondary text-sm px-4 py-2"
-                  >
-                    Alterar Humor
-                  </button>
-                </div>
-                
-                {currentMoodObj?.tips && (
-                  <div className="bg-white/70 rounded-lg p-4">
-                    <p className="text-green-800 font-semibold mb-3 flex items-center">
-                      <span className="mr-2">💡</span>
-                      Dicas personalizadas para seu humor:
-                    </p>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {currentMoodObj.tips.map((tip: string, index: number) => (
-                        <div key={index} className="bg-white rounded-lg p-3 border border-green-200">
-                          <p className="text-green-700 text-sm leading-relaxed">{tip}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          ) : (
-            <div>
-              {showMoodSelector ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                  {moods.map((mood, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleMoodSelect(mood)}
-                      className="group p-4 rounded-xl border-2 border-neutral-200 hover:border-rose-300 transition-all text-center bg-white hover:bg-rose-50"
-                    >
-                      <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">{mood.emoji}</div>
-                      <div className="text-sm font-medium text-neutral-700 group-hover:text-rose-700">
-                        {mood.label}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center">
-                  <p className="text-neutral-600 mb-6">Compartilhe como você está se sentindo para receber dicas personalizadas.</p>
-                  <button 
-                    onClick={() => setShowMoodSelector(true)}
-                    className="btn-primary px-8 py-3 text-lg"
-                  >
-                    <span className="mr-2">💝</span>
-                    Fazer Check-in Diário
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Funcionalidades Adicionais */}
-        <div className="card mb-8">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-6 flex items-center">
-            <span className="mr-2">🌟</span>
-            Funcionalidades Especiais
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                icon: '💝',
-                title: 'Quiz Linguagens do Amor',
-                description: 'Descubram as linguagens do amor de vocês',
-                color: 'from-purple-400 to-pink-400',
-                link: '/linguagens-do-amor',
-                badge: 'Popular'
-              },
-              {
-                icon: '💬',
-                title: 'Chat com Mentora IA',
-                description: 'Conselhos e orientações personalizadas 24/7',
-                color: 'from-blue-500 to-cyan-500',
-                link: '/chat',
-                badge: 'Sempre Disponível'
-              },
-              {
-                icon: '🎯',
-                title: 'Metas do Relacionamento',
-                description: 'Definam e acompanhem objetivos como casal',
-                color: 'from-orange-500 to-red-500',
-                link: '/metas-relacionamento',
-                badge: 'Progresso'
-              }
-            ].map((feature, index) => (
-              <Link 
-                key={index} 
-                to={feature.link}
-                className="group relative card-hover bg-white rounded-2xl border-2 border-neutral-200 hover:border-rose-300 p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-glow"
-              >
-                <div className="absolute top-4 right-4">
-                  <span className="bg-rose-100 text-rose-600 text-xs font-semibold px-2 py-1 rounded-full">
-                    {feature.badge}
-                  </span>
-                </div>
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg mb-4 group-hover:scale-110 transition-transform`}>
-                  <span className="text-white text-2xl">{feature.icon}</span>
-                </div>
-                <h3 className="text-lg font-bold font-display text-neutral-900 mb-2 group-hover:text-rose-700 transition-colors">
-                  {feature.title}
-                </h3>
-                <p className="text-neutral-600 text-sm leading-relaxed">
-                  {feature.description}
-                </p>
-                <div className="mt-4 flex items-center text-rose-600 font-semibold text-sm">
-                  <span>Acessar</span>
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-
-        {/* Guia de Primeiros Passos */}
-        <div className="card bg-gradient-to-br from-rose-500 via-primary-500 to-purple-600 text-white max-w-4xl mx-auto">
+        {/* Guia de Primeiros Passos - Movido para cima */}
+        <div className="card bg-gradient-to-br from-rose-500 via-primary-500 to-purple-600 text-white max-w-4xl mx-auto mb-8">
           <div className="text-center mb-6">
             <div className="text-4xl mb-4">🌟</div>
             <h2 className="text-3xl font-bold font-display mb-4">
@@ -408,6 +212,208 @@ export default function Dashboard() {
             )}
           </div>
         </div>
+
+        {/* Today's Overview - Informações de hoje sozinho */}
+        <div className="card bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 mb-8">
+          <div className="flex items-start gap-4">
+            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <span className="text-white text-2xl">📅</span>
+            </div>
+            <div className="flex-1">
+              <h2 className="text-2xl font-bold text-neutral-900 mb-4">Informações de Hoje</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="bg-white/70 rounded-lg p-4">
+                  <p className="text-neutral-700 font-semibold mb-2">
+                    📍 <strong>Data de hoje:</strong>
+                  </p>
+                  <p className="text-neutral-600 text-sm">
+                    {new Date().toLocaleDateString('pt-BR', { 
+                      weekday: 'long', 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}
+                  </p>
+                </div>
+                <div className="bg-white/70 rounded-lg p-4">
+                  <p className="text-green-700 font-semibold mb-2">✅ Agenda de hoje:</p>
+                  <p className="text-neutral-600 text-sm">• Use o Calendário do Casal para agendar compromissos</p>
+                  <p className="text-neutral-600 text-sm">• Que tal planejar algo especial? 💕</p>
+                </div>
+                <div className="bg-white/70 rounded-lg p-4">
+                  <p className="text-purple-700 font-semibold mb-2">💝 Datas especiais:</p>
+                  <p className="text-neutral-600 text-sm">Configure eventos importantes no seu calendário para não esquecer nunca mais!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Check-in Diário e Dica do Dia lado a lado */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+          {/* Check-in Diário */}
+          <div className="card">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                <span className="text-white text-2xl">💭</span>
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-neutral-900">Check-in Diário</h2>
+                <p className="text-neutral-600 text-sm">Como você está se sentindo hoje?</p>
+              </div>
+            </div>
+            
+            {currentMood ? (
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                    <p className="text-green-800 font-semibold mb-2 sm:mb-0">
+                      Hoje você está: <strong>{currentMood}</strong> {currentMoodObj?.emoji}
+                    </p>
+                    <button 
+                      onClick={handleChangeMood}
+                      className="btn-secondary text-sm px-3 py-1"
+                    >
+                      Alterar
+                    </button>
+                  </div>
+                  
+                  {currentMoodObj?.tips && (
+                    <div className="bg-white/70 rounded-lg p-3">
+                      <p className="text-green-800 font-semibold mb-2 text-sm flex items-center">
+                        <span className="mr-2">💡</span>
+                        Dicas para seu humor:
+                      </p>
+                      <div className="space-y-2">
+                        {currentMoodObj.tips.slice(0, 2).map((tip: string, index: number) => (
+                          <div key={index} className="bg-white rounded-lg p-2 border border-green-200">
+                            <p className="text-green-700 text-xs leading-relaxed">{tip}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div>
+                {showMoodSelector ? (
+                  <div className="grid grid-cols-3 gap-3">
+                    {moods.map((mood, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleMoodSelect(mood)}
+                        className="group p-3 rounded-xl border-2 border-neutral-200 hover:border-rose-300 transition-all text-center bg-white hover:bg-rose-50"
+                      >
+                        <div className="text-2xl mb-1 group-hover:scale-110 transition-transform">{mood.emoji}</div>
+                        <div className="text-xs font-medium text-neutral-700 group-hover:text-rose-700">
+                          {mood.label}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center">
+                    <p className="text-neutral-600 mb-4">Compartilhe como você está se sentindo.</p>
+                    <button 
+                      onClick={() => setShowMoodSelector(true)}
+                      className="btn-primary w-full"
+                    >
+                      <span className="mr-2">💝</span>
+                      Fazer Check-in
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Dica do Dia */}
+          {dailyTip && (
+            <div className="card bg-gradient-to-r from-rose-50 to-primary-50 border-2 border-rose-200 relative">
+              <button 
+                onClick={() => setDailyTip(false)}
+                className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600"
+              >
+                ✕
+              </button>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-rose-500 to-primary-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-xl">💕</span>
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-xl font-bold text-neutral-900 mb-2">Dica do Dia</h2>
+                  <p className="text-neutral-700 mb-4 leading-relaxed">
+                    {dailyTips[Math.floor(Math.random() * dailyTips.length)]}
+                  </p>
+                  <button className="btn-primary text-sm w-full">Vou tentar isso! 💕</button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Funcionalidades Adicionais */}
+        <div className="card mb-8">
+          <h2 className="text-2xl font-bold text-neutral-900 mb-6 flex items-center">
+            <span className="mr-2">🌟</span>
+            Funcionalidades Especiais
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: '💝',
+                title: 'Quiz Linguagens do Amor',
+                description: 'Descubram as linguagens do amor de vocês',
+                color: 'from-purple-400 to-pink-400',
+                link: '/linguagens-do-amor',
+                badge: 'Popular'
+              },
+              {
+                icon: '💬',
+                title: 'Chat com Mentora IA',
+                description: 'Conselhos e orientações personalizadas 24/7',
+                color: 'from-blue-500 to-cyan-500',
+                link: '/chat',
+                badge: 'Sempre Disponível'
+              },
+              {
+                icon: '🎯',
+                title: 'Metas do Relacionamento',
+                description: 'Definam e acompanhem objetivos como casal',
+                color: 'from-orange-500 to-red-500',
+                link: '/metas-relacionamento',
+                badge: 'Progresso'
+              }
+            ].map((feature, index) => (
+              <Link 
+                key={index} 
+                to={feature.link}
+                className="group relative card-hover bg-white rounded-2xl border-2 border-neutral-200 hover:border-rose-300 p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-glow"
+              >
+                <div className="absolute top-4 right-4">
+                  <span className="bg-rose-100 text-rose-600 text-xs font-semibold px-2 py-1 rounded-full">
+                    {feature.badge}
+                  </span>
+                </div>
+                <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg mb-4 group-hover:scale-110 transition-transform`}>
+                  <span className="text-white text-2xl">{feature.icon}</span>
+                </div>
+                <h3 className="text-lg font-bold font-display text-neutral-900 mb-2 group-hover:text-rose-700 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-neutral-600 text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+                <div className="mt-4 flex items-center text-rose-600 font-semibold text-sm">
+                  <span>Acessar</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+
       </div>
     </Layout>
   );
