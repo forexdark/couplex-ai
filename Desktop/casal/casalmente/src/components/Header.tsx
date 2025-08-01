@@ -34,20 +34,13 @@ export default function Header() {
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {user ? (
-              <>
-                <Link to="/dashboard" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
-                  Dashboard
-                </Link>
-                <Link to="/diario" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
-                  Diário
-                </Link>
-                <Link to="/sentimentos" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
-                  Sentimentos
-                </Link>
-                <Link to="/calendario" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
-                  Calendário
-                </Link>
-              </>
+              <Link 
+                to="/configuracoes" 
+                className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors"
+              >
+                <span>⚙️</span>
+                <span>Configurações</span>
+              </Link>
             ) : (
               <>
                 <a href="#funcionalidades" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
