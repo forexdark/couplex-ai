@@ -9,6 +9,9 @@ import LanguagesOfLove from './pages/LanguagesOfLove';
 import EmotionalDiary from './pages/EmotionalDiary';
 import CoupleCalendar from './pages/CoupleCalendar';
 import AIChat from './pages/AIChat';
+import PersonalizedSurprises from './pages/PersonalizedSurprises';
+import RelationshipGoals from './pages/RelationshipGoals';
+import CrisisMode from './pages/CrisisMode';
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -83,6 +86,21 @@ function App() {
           <Route path="/calendario-casal" element={
             <ProtectedRoute>
               <CoupleCalendar />
+            </ProtectedRoute>
+          } />
+          <Route path="/surpresas-personalizadas" element={
+            <ProtectedRoute>
+              <PersonalizedSurprises />
+            </ProtectedRoute>
+          } />
+          <Route path="/metas-relacionamento" element={
+            <ProtectedRoute>
+              <RelationshipGoals />
+            </ProtectedRoute>
+          } />
+          <Route path="/modo-crise" element={
+            <ProtectedRoute>
+              <CrisisMode />
             </ProtectedRoute>
           } />
           

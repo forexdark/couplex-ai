@@ -6,16 +6,71 @@ import { useAuth } from '../hooks/useAuth';
 export default function Dashboard() {
   const { user } = useAuth();
   const [currentMood, setCurrentMood] = useState('');
+  const [currentMoodObj, setCurrentMoodObj] = useState<any>(null);
   const [showMoodSelector, setShowMoodSelector] = useState(false);
   const [dailyTip, setDailyTip] = useState(true);
 
   const moods = [
-    { emoji: '😍', label: 'Apaixonado(a)', color: 'from-pink-400 to-rose-500' },
-    { emoji: '😊', label: 'Feliz', color: 'from-yellow-400 to-orange-500' },
-    { emoji: '😌', label: 'Tranquilo(a)', color: 'from-green-400 to-teal-500' },
-    { emoji: '😐', label: 'Neutro', color: 'from-gray-400 to-neutral-500' },
-    { emoji: '😔', label: 'Triste', color: 'from-blue-400 to-indigo-500' },
-    { emoji: '😤', label: 'Irritado(a)', color: 'from-red-400 to-red-600' },
+    { 
+      emoji: '😍', 
+      label: 'Apaixonado(a)', 
+      color: 'from-pink-400 to-rose-500',
+      tips: [
+        "💕 Aproveite esse momento! Expresse seus sentimentos ao seu parceiro.",
+        "📸 Criem memórias especiais - tirem fotos, escrevam bilhetes carinhosos.",
+        "🎁 Que tal uma surpresa romântica? Mesmo pequena, fará diferença!"
+      ]
+    },
+    { 
+      emoji: '😊', 
+      label: 'Feliz', 
+      color: 'from-yellow-400 to-orange-500',
+      tips: [
+        "✨ Compartilhe essa alegria! Conte ao seu parceiro o que te deixou feliz.",
+        "🎵 Que tal dançarem juntos ou ouvirem uma música especial?",
+        "🍯 Sua energia positiva é contagiante - use-a para fortalecer a conexão!"
+      ]
+    },
+    { 
+      emoji: '😌', 
+      label: 'Tranquilo(a)', 
+      color: 'from-green-400 to-teal-500',
+      tips: [
+        "🧘 Aproveite essa paz para conversas profundas e significativas.",
+        "🌅 Que tal um momento de qualidade juntos? Sem pressa, só vocês dois.",
+        "📱 Use essa tranquilidade para se desconectar do digital e se reconectar."
+      ]
+    },
+    { 
+      emoji: '😐', 
+      label: 'Neutro', 
+      color: 'from-gray-400 to-neutral-500',
+      tips: [
+        "⚡ Que tal fazer algo diferente hoje? Quebrem a rotina juntos!",
+        "💬 Uma conversa interessante pode mudar completamente seu dia.",
+        "🎯 Definam um pequeno objetivo juntos - isso pode trazer energia nova!"
+      ]
+    },
+    { 
+      emoji: '😔', 
+      label: 'Triste', 
+      color: 'from-blue-400 to-indigo-500',
+      tips: [
+        "🤗 Não precisa carregar tudo sozinho(a). Converse com seu parceiro.",
+        "💙 Aceite esse sentimento. Sua vulnerabilidade pode aproximar vocês.",
+        "☕ Que tal um momento acolhedor? Um chá, uma conversa, um abraço."
+      ]
+    },
+    { 
+      emoji: '😤', 
+      label: 'Irritado(a)', 
+      color: 'from-red-400 to-red-600',
+      tips: [
+        "🌬️ Respire fundo antes de falar. Conte até 10, depois expresse-se.",
+        "🚶 Que tal uma caminhada para esfriar a cabeça antes de conversar?",
+        "💭 Pergunte-se: 'O que realmente está me incomodando?' Vá à raiz."
+      ]
+    },
   ];
 
   const dailyTips = [
@@ -28,7 +83,14 @@ export default function Dashboard() {
 
   const handleMoodSelect = (mood: any) => {
     setCurrentMood(mood.label);
+    setCurrentMoodObj(mood);
     setShowMoodSelector(false);
+  };
+
+  const handleChangeMood = () => {
+    setCurrentMood('');
+    setCurrentMoodObj(null);
+    setShowMoodSelector(true);
   };
 
   return (
@@ -114,19 +176,36 @@ export default function Dashboard() {
             </div>
             
             {currentMood ? (
-              <div className="bg-green-50 border border-green-200 rounded-xl p-4">
-                <p className="text-green-800 font-medium mb-2">
-                  Hoje você está: <strong>{currentMood}</strong>
-                </p>
-                <p className="text-green-700 text-sm mb-4">
-                  Que bom que você compartilhou! Vou personalizar as dicas para seu estado atual.
-                </p>
-                <button 
-                  onClick={() => setShowMoodSelector(true)}
-                  className="text-green-600 text-sm font-medium hover:underline"
-                >
-                  Mudou de humor? Clique aqui
-                </button>
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-green-800 font-medium">
+                      Hoje você está: <strong>{currentMood}</strong> {currentMoodObj?.emoji}
+                    </p>
+                    <button 
+                      onClick={handleChangeMood}
+                      className="text-green-600 text-sm font-medium hover:underline"
+                    >
+                      Alterar
+                    </button>
+                  </div>
+                  
+                  {currentMoodObj?.tips && (
+                    <div className="bg-white/70 rounded-lg p-3">
+                      <p className="text-green-800 font-semibold mb-2 text-sm">
+                        💡 Dicas personalizadas para seu humor:
+                      </p>
+                      <div className="space-y-2">
+                        {currentMoodObj.tips.map((tip: string, index: number) => (
+                          <div key={index} className="flex items-start gap-2">
+                            <span className="text-green-500 text-xs mt-1">•</span>
+                            <p className="text-green-700 text-xs leading-relaxed">{tip}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             ) : (
               <div>
@@ -208,23 +287,23 @@ export default function Dashboard() {
               title: 'Metas do Relacionamento',
               description: 'Definam e acompanhem objetivos como casal',
               color: 'from-orange-500 to-red-500',
-              link: '#',
-              status: 'soon'
+              link: '/metas-relacionamento',
+              status: 'available'
             },
             {
               icon: '🎁',
               title: 'Surpresas Personalizadas',
               description: 'Ideias de presentes e momentos especiais baseadas na IA',
               color: 'from-yellow-500 to-orange-500',
-              link: '#',
-              status: 'soon'
+              link: '/surpresas-personalizadas',
+              status: 'available'
             },
             {
               icon: '🆘',
               title: 'Modo Crise',
-              description: 'Mediação da mentora para conflitos urgentes',
+              description: 'Protocolo especial para conflitos urgentes',
               color: 'from-red-500 to-pink-500',
-              link: '/chat',
+              link: '/modo-crise',
               status: 'available'
             }
           ].map((feature, index) => (
@@ -289,13 +368,21 @@ export default function Dashboard() {
           </p>
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-4">
             <p className="text-sm text-neutral-200">
-              💡 <strong>Próximo passo:</strong> Faça seu check-in diário e converse com nossa IA terapeuta 
-              para receber conselhos personalizados baseados no seu estado emocional atual.
+              💡 <strong>Próximo passo:</strong> {currentMood ? 'Explore nossas funcionalidades e converse com a mentora!' : 'Faça seu check-in diário para receber orientações personalizadas.'}
             </p>
           </div>
-          <button className="bg-white text-neutral-800 px-6 py-3 rounded-xl font-semibold hover:bg-neutral-100 transition-colors">
-            Começar agora! 💕
-          </button>
+          {currentMood ? (
+            <Link to="/chat" className="bg-white text-neutral-800 px-6 py-3 rounded-xl font-semibold hover:bg-neutral-100 transition-colors inline-block">
+              Conversar com a Mentora 💕
+            </Link>
+          ) : (
+            <button 
+              onClick={() => setShowMoodSelector(true)}
+              className="bg-white text-neutral-800 px-6 py-3 rounded-xl font-semibold hover:bg-neutral-100 transition-colors"
+            >
+              Fazer Check-in Diário 💕
+            </button>
+          )}
         </div>
       </div>
     </Layout>
