@@ -26,26 +26,7 @@ interface Milestone {
 
 export default function RelationshipGoals() {
   const { user } = useAuth();
-  const [goals, setGoals] = useState<Goal[]>([
-    {
-      id: '1',
-      title: 'Melhorar nossa comunicação diária',
-      description: 'Conversar por pelo menos 20 minutos todos os dias sobre nossos sentimentos e dia',
-      category: 'communication',
-      priority: 'high',
-      deadline: '2025-09-01',
-      status: 'in_progress',
-      progress: 45,
-      partnerA: user?.displayName?.split(' ')[0] || 'Você',
-      partnerB: 'Seu parceiro',
-      milestones: [
-        { id: '1', title: 'Definir horário fixo para conversar', completed: true, completedBy: 'Você', completedDate: '2025-08-01' },
-        { id: '2', title: 'Praticar escuta ativa', completed: true, completedBy: 'Ambos', completedDate: '2025-08-03' },
-        { id: '3', title: 'Compartilhar 3 coisas boas do dia', completed: false },
-        { id: '4', title: 'Conversar sobre sonhos e medos', completed: false }
-      ]
-    }
-  ]);
+  const [goals, setGoals] = useState<Goal[]>([]);
   
   const [showForm, setShowForm] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -58,7 +39,7 @@ export default function RelationshipGoals() {
     status: 'not_started',
     progress: 0,
     milestones: [],
-    partnerA: user?.displayName?.split(' ')[0] || 'Você',
+    partnerA: 'Você',
     partnerB: 'Seu parceiro'
   });
 
@@ -164,8 +145,8 @@ export default function RelationshipGoals() {
       status: 'not_started',
       progress: 0,
       milestones,
-      partnerA: currentGoal.partnerA || 'Você',
-      partnerB: currentGoal.partnerB || 'Seu parceiro'
+      partnerA: 'Você',
+      partnerB: 'Seu parceiro'
     };
 
     setGoals([...goals, newGoal]);
@@ -178,7 +159,7 @@ export default function RelationshipGoals() {
       status: 'not_started',
       progress: 0,
       milestones: [],
-      partnerA: user?.displayName?.split(' ')[0] || 'Você',
+      partnerA: 'Você',
       partnerB: 'Seu parceiro'
     });
     setShowForm(false);

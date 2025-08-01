@@ -99,7 +99,7 @@ export default function Dashboard() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold font-display text-neutral-900 mb-2">
-            Olá, {user?.displayName?.split(' ')[0] || 'Usuário'}! 💕
+            Olá! 💕
           </h1>
           <p className="text-neutral-600">
             Como está seu relacionamento hoje? Vamos trabalhar juntos para fortalecê-lo.
@@ -127,12 +127,12 @@ export default function Dashboard() {
                   </p>
                   <div className="bg-white/70 rounded-lg p-3 mt-3">
                     <p className="text-green-700 font-medium mb-1">✅ Agenda de hoje:</p>
-                    <p className="text-neutral-600 text-xs">• Nenhum compromisso do casal hoje</p>
+                    <p className="text-neutral-600 text-xs">• Use o Calendário do Casal para agendar compromissos</p>
                     <p className="text-neutral-600 text-xs">• Que tal planejar algo especial? 💕</p>
                   </div>
                   <div className="bg-white/70 rounded-lg p-3">
-                    <p className="text-purple-700 font-medium mb-1">💝 Data especial:</p>
-                    <p className="text-neutral-600 text-xs">Não é uma data comemorativa hoje, mas todo dia pode ser especial quando estamos com quem amamos!</p>
+                    <p className="text-purple-700 font-medium mb-1">💝 Datas especiais:</p>
+                    <p className="text-neutral-600 text-xs">Configure eventos importantes no seu calendário para não esquecer nunca mais!</p>
                   </div>
                 </div>
               </div>
@@ -336,25 +336,6 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid md:grid-cols-4 gap-4 mb-8">
-          <div className="card text-center bg-gradient-to-br from-rose-50 to-pink-50 border-rose-200">
-            <div className="text-2xl font-bold text-rose-600">1</div>
-            <div className="text-sm text-rose-700">Dias no CoupleX AI</div>
-          </div>
-          <div className="card text-center bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
-            <div className="text-2xl font-bold text-blue-600">0</div>
-            <div className="text-sm text-blue-700">Conversas com IA</div>
-          </div>
-          <div className="card text-center bg-gradient-to-br from-green-50 to-teal-50 border-green-200">
-            <div className="text-2xl font-bold text-green-600">0</div>
-            <div className="text-sm text-green-700">Metas Alcançadas</div>
-          </div>
-          <div className="card text-center bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
-            <div className="text-2xl font-bold text-yellow-600">0</div>
-            <div className="text-sm text-yellow-700">Memórias Salvas</div>
-          </div>
-        </div>
 
         {/* Welcome Message */}
         <div className="card bg-gradient-to-r from-neutral-900 to-neutral-800 text-white text-center max-w-2xl mx-auto">

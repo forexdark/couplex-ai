@@ -14,26 +14,7 @@ interface CalendarEvent {
 
 export default function CoupleCalendar() {
   const { user } = useAuth();
-  const [events, setEvents] = useState<CalendarEvent[]>([
-    {
-      id: '1',
-      title: 'Jantar romântico',
-      date: '2025-08-15',
-      time: '19:00',
-      type: 'date',
-      description: 'Jantar especial no nosso restaurante favorito',
-      reminder: true
-    },
-    {
-      id: '2',
-      title: 'Aniversário de namoro',
-      date: '2025-08-20',
-      time: '00:00',
-      type: 'anniversary',
-      description: '3 anos juntos! 💕',
-      reminder: true
-    }
-  ]);
+  const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [currentEvent, setCurrentEvent] = useState<Partial<CalendarEvent>>({
     title: '',

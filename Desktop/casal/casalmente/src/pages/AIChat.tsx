@@ -16,7 +16,7 @@ export default function AIChat() {
     {
       id: '1',
       sender: 'ai',
-      content: `Olá, ${user?.displayName?.split(' ')[0] || 'querido(a)'}! 💕 
+      content: `Olá! 💕 
 
 Sou sua mentora pessoal dos relacionamentos. Estou aqui para te ouvir, te aconselhar e te ajudar a fortalecer seu relacionamento de forma genuína e carinhosa.
 
