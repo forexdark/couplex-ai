@@ -1,8 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 export default function Header() {
   const { user, logout } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -25,32 +28,33 @@ export default function Header() {
             </div>
             <div>
               <h1 className="text-xl font-bold font-display bg-gradient-to-r from-rose-600 to-primary-600 bg-clip-text text-transparent">
-                CoupleX AI
+                {t('header.title')}
               </h1>
-              <p className="text-xs text-neutral-500 -mt-1">Mentora dos Relacionamentos</p>
+              <p className="text-xs text-neutral-500 -mt-1">{t('header.subtitle')}</p>
             </div>
           </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
+            <LanguageSelector />
             {user ? (
               <Link 
                 to="/configuracoes" 
                 className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors"
               >
                 <span>⚙️</span>
-                <span>Configurações</span>
+                <span>{t('header.settings')}</span>
               </Link>
             ) : (
               <>
                 <a href="#funcionalidades" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
-                  Funcionalidades
+                  {t('header.features')}
                 </a>
                 <a href="#precos" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
-                  Preços
+                  {t('header.pricing')}
                 </a>
                 <a href="#como-funciona" className="px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors">
-                  Como Funciona
+                  {t('header.howItWorks')}
                 </a>
               </>
             )}
@@ -61,13 +65,13 @@ export default function Header() {
             {user ? (
               <div className="flex items-center space-x-3">
                 <div className="hidden sm:block text-right">
-                  <p className="text-sm font-medium text-neutral-700">Olá, {user.displayName || 'Usuário'}</p>
-                  <p className="text-xs text-neutral-500">Conectado</p>
+                  <p className="text-sm font-medium text-neutral-700">{t('header.hello')}, {user.displayName || 'Usuário'}</p>
+                  <p className="text-xs text-neutral-500">{t('header.connected')}</p>
                 </div>
                 <button
                   onClick={handleLogout}
                   className="p-2 text-neutral-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
-                  title="Sair"
+                  title={t('header.logout')}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -80,13 +84,13 @@ export default function Header() {
                   to="/auth"
                   className="btn-secondary text-sm"
                 >
-                  Entrar
+                  {t('header.login')}
                 </Link>
                 <Link
                   to="/auth?mode=signup"
                   className="btn-primary text-sm"
                 >
-                  Começar Grátis
+                  {t('header.signup')}
                 </Link>
               </div>
             )}

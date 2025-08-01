@@ -3,6 +3,8 @@ import { AuthProvider, useAuth } from './hooks/useAuth';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { CoupleProvider } from './contexts/CoupleContext';
 import { NotificationProvider } from './contexts/NotificationContext';
+import { LanguageProvider } from './contexts/LanguageContext';
+import { GamificationProvider } from './contexts/GamificationContext';
 
 // Pages
 import Home from './pages/Home';
@@ -16,6 +18,9 @@ import PersonalizedSurprises from './pages/PersonalizedSurprises';
 import RelationshipGoals from './pages/RelationshipGoals';
 import CrisisMode from './pages/CrisisMode';
 import Settings from './pages/Settings';
+import ConquestGuide from './pages/ConquestGuide';
+import ReconquestGuide from './pages/ReconquestGuide';
+import ActionPlans from './pages/ActionPlans';
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -60,9 +65,11 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 function App() {
   return (
     <ThemeProvider>
-      <AuthProvider>
-        <CoupleProvider>
-          <NotificationProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          <GamificationProvider>
+            <CoupleProvider>
+              <NotificationProvider>
             <Router>
               <Routes>
           {/* Public Routes */}
@@ -115,15 +122,32 @@ function App() {
               <Settings />
             </ProtectedRoute>
           } />
+          <Route path="/guia-conquista" element={
+            <ProtectedRoute>
+              <ConquestGuide />
+            </ProtectedRoute>
+          } />
+          <Route path="/guia-reconquista" element={
+            <ProtectedRoute>
+              <ReconquestGuide />
+            </ProtectedRoute>
+          } />
+          <Route path="/planos-acao" element={
+            <ProtectedRoute>
+              <ActionPlans />
+            </ProtectedRoute>
+          } />
           
           {/* Redirect any unknown routes */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
-            </NotificationProvider>
-          </CoupleProvider>
+              </NotificationProvider>
+            </CoupleProvider>
+          </GamificationProvider>
         </AuthProvider>
-      </ThemeProvider>
+      </LanguageProvider>
+    </ThemeProvider>
     );
 }
 

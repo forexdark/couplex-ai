@@ -1,14 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { useAuth } from '../hooks/useAuth';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useGamification } from '../contexts/GamificationContext';
 
 export default function Dashboard() {
   const { user } = useAuth();
+  const { t } = useLanguage();
+  const { userProgress, getDailyChallenge, updateStreak } = useGamification();
   const [currentMood, setCurrentMood] = useState('');
   const [currentMoodObj, setCurrentMoodObj] = useState<any>(null);
   const [showMoodSelector, setShowMoodSelector] = useState(false);
   const [dailyTip, setDailyTip] = useState(true);
+
+  useEffect(() => {
+    // Atualizar streak quando o usuário acessa o dashboard
+    updateStreak();
+  }, []);
+
+  const dailyChallenge = getDailyChallenge();
 
   const moods = [
     { 
@@ -99,12 +110,62 @@ export default function Dashboard() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold font-display text-neutral-900 mb-2">
-            Olá, {user?.displayName?.split(' ')[0] || 'querido(a)'}! 💕
+            {t('dashboard.welcome')}, {user?.displayName?.split(' ')[0] || 'querido(a)'}! 💕
           </h1>
           <p className="text-neutral-600">
             Como está seu relacionamento hoje? Vamos trabalhar juntos para fortalecê-lo.
           </p>
         </div>
+
+        {/* Gamification Progress Bar */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div className="bg-gradient-to-r from-primary-500 to-rose-500 rounded-xl p-4 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-90">{t('gamification.level')}</p>
+                <p className="text-2xl font-bold">{userProgress.level}</p>
+              </div>
+              <div className="text-3xl">🏆</div>
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl p-4 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-90">{t('gamification.points')}</p>
+                <p className="text-2xl font-bold">{userProgress.totalPoints}</p>
+              </div>
+              <div className="text-3xl">⭐</div>
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl p-4 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-90">{t('gamification.streak')}</p>
+                <p className="text-2xl font-bold">{userProgress.streak} dias</p>
+              </div>
+              <div className="text-3xl">🔥</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Daily Challenge */}
+        {dailyChallenge && (
+          <div className="card bg-gradient-to-r from-purple-500 to-indigo-500 text-white mb-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-bold text-lg mb-1">{t('gamification.dailyChallenge')}</h3>
+                <p className="opacity-90">{dailyChallenge.title}</p>
+                <p className="text-sm opacity-75 mt-1">{dailyChallenge.description}</p>
+              </div>
+              <div className="text-right">
+                <div className="text-3xl mb-2">🎯</div>
+                <p className="text-sm opacity-90">+{dailyChallenge.points} pontos</p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Quick Navigation Menu */}
         <div className="card mb-8">
@@ -112,15 +173,18 @@ export default function Dashboard() {
             <span className="mr-2">🧭</span>
             Acesso Rápido às Funcionalidades
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-10 gap-3">
             {[
-              { icon: '📝', title: 'Diário', link: '/diario-emocional', color: 'purple' },
-              { icon: '📅', title: 'Calendário', link: '/calendario-casal', color: 'green' },
-              { icon: '💬', title: 'Chat IA', link: '/chat', color: 'blue' },
-              { icon: '🎯', title: 'Metas', link: '/metas-relacionamento', color: 'orange' },
-              { icon: '🎁', title: 'Surpresas', link: '/surpresas-personalizadas', color: 'yellow' },
-              { icon: '🆘', title: 'Crise', link: '/modo-crise', color: 'red' },
-              { icon: '⚙️', title: 'Configurações', link: '/configuracoes', color: 'gray' }
+              { icon: '📝', title: t('menu.diary'), link: '/diario-emocional', color: 'purple' },
+              { icon: '📅', title: t('menu.calendar'), link: '/calendario-casal', color: 'green' },
+              { icon: '💬', title: t('menu.aiChat'), link: '/chat', color: 'blue' },
+              { icon: '🎯', title: t('menu.goals'), link: '/metas-relacionamento', color: 'orange' },
+              { icon: '🎁', title: t('menu.surprises'), link: '/surpresas-personalizadas', color: 'yellow' },
+              { icon: '🆘', title: t('menu.crisis'), link: '/modo-crise', color: 'red' },
+              { icon: '📚', title: t('menu.guides'), link: '/guia-conquista', color: 'pink' },
+              { icon: '🔄', title: 'Reconquista', link: '/guia-reconquista', color: 'amber' },
+              { icon: '📋', title: 'Planos', link: '/planos-acao', color: 'indigo' },
+              { icon: '⚙️', title: t('menu.settings'), link: '/configuracoes', color: 'gray' }
             ].map((item, index) => (
               <Link
                 key={index}
