@@ -117,16 +117,16 @@ export default function Dashboard() {
       <div className="container-app py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold font-display text-neutral-900 mb-2">
+          <h1 className="text-3xl font-bold font-display text-neutral-900 dark:text-white mb-2">
             {t('dashboard.welcome')}, {user?.displayName?.split(' ')[0] || 'querido(a)'}!
           </h1>
-          <p className="text-neutral-600">
-            Como está seu relacionamento hoje? Vamos trabalhar juntos para fortalecê-lo.
+          <p className="text-neutral-600 dark:text-neutral-300">
+            {t('dashboard.relationshipToday')}
           </p>
         </div>
 
         {/* Today's Summary - Moved to top */}
-        <div className="card bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 mb-8">
+        <div className="card bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-2 border-blue-200 dark:border-blue-700 mb-8">
           <div className="flex items-start gap-4">
             <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center flex-shrink-0">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,9 +134,9 @@ export default function Dashboard() {
               </svg>
             </div>
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-neutral-900 mb-4">{t('dashboard.todayInfo')}</h2>
+              <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">{t('dashboard.todayInfo')}</h2">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="bg-white/70 rounded-lg p-4">
+                <div className="bg-white/70 dark:bg-neutral-800/70 rounded-lg p-4">
                   <p className="text-neutral-700 font-semibold mb-2 flex items-center">
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v16a2 2 0 002 2z" />
@@ -152,24 +152,24 @@ export default function Dashboard() {
                     })}
                   </p>
                 </div>
-                <div className="bg-white/70 rounded-lg p-4">
+                <div className="bg-white/70 dark:bg-neutral-800/70 rounded-lg p-4">
                   <p className="text-green-700 font-semibold mb-2 flex items-center">
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                     </svg>
                     {t('dashboard.todayAgenda')}:
                   </p>
-                  <p className="text-neutral-600 text-sm">• Use o Calendário do Casal para agendar compromissos</p>
-                  <p className="text-neutral-600 text-sm">• Que tal planejar algo especial?</p>
+                  <p className="text-neutral-600 text-sm">• {t('dashboard.useCalendar')}</p>
+                  <p className="text-neutral-600 text-sm">• {t('dashboard.planSomething')}</p>
                 </div>
-                <div className="bg-white/70 rounded-lg p-4">
+                <div className="bg-white/70 dark:bg-neutral-800/70 rounded-lg p-4">
                   <p className="text-purple-700 font-semibold mb-2 flex items-center">
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                     {t('dashboard.specialDates')}:
                   </p>
-                  <p className="text-neutral-600 text-sm">Configure eventos importantes no seu calendário para não esquecer nunca mais!</p>
+                  <p className="text-neutral-600 text-sm">{t('dashboard.configureEvents')}</p>
                 </div>
               </div>
             </div>
@@ -179,7 +179,7 @@ export default function Dashboard() {
 
         {/* Menu de Acesso Rápido */}
         <div className="card mb-8">
-          <h2 className="text-xl font-bold text-neutral-900 mb-6 flex items-center">
+          <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
@@ -256,8 +256,8 @@ export default function Dashboard() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-bold text-neutral-900">{t('dashboard.dailyCheckIn')}</h2>
-                <p className="text-neutral-600 text-sm">{t('dashboard.moodToday')}</p>
+                <h2 className="text-xl font-bold text-neutral-900 dark:text-white">{t('dashboard.dailyCheckIn')}</h2>
+                <p className="text-neutral-600 dark:text-neutral-300 text-sm">{t('dashboard.moodToday')}</p>
               </div>
             </div>
             
@@ -314,7 +314,7 @@ export default function Dashboard() {
                   </div>
                 ) : (
                   <div className="text-center">
-                    <p className="text-neutral-600 mb-4">Compartilhe como você está se sentindo.</p>
+                    <p className="text-neutral-600 mb-4">{t('dashboard.shareFeeling')}</p>
                     <button 
                       onClick={() => setShowMoodSelector(true)}
                       className="btn-primary w-full flex items-center justify-center"
@@ -356,8 +356,8 @@ export default function Dashboard() {
                   </svg>
                 </div>
                 <div className="flex-1 flex flex-col">
-                  <h2 className="text-xl font-bold text-neutral-900 mb-2">{t('dashboard.dailyTipTitle')}</h2>
-                  <p className="text-neutral-700 mb-4 leading-relaxed flex-1">
+                  <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{t('dashboard.dailyTipTitle')}</h2>
+                  <p className="text-neutral-700 dark:text-neutral-300 mb-4 leading-relaxed flex-1">
                     {dailyTips[Math.floor(Math.random() * dailyTips.length)]}
                   </p>
                   <button className="btn-primary text-sm w-full flex items-center justify-center mt-auto">

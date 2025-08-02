@@ -53,6 +53,13 @@ const translations = {
     'dashboard.completeProfile': 'Complete seu Perfil do Casal',
     'dashboard.profileProgress': 'Seu perfil está {progress}% completo. Complete para receber conteúdo personalizado!',
     'dashboard.completeProfileBtn': 'Completar Perfil',
+    'dashboard.relationshipToday': 'Como está seu relacionamento hoje? Vamos trabalhar juntos para fortalecê-lo.',
+    'dashboard.shareFeeling': 'Compartilhe como você está se sentindo.',
+    
+    // Dashboard - Mood tips and daily tips
+    'dashboard.useCalendar': 'Use o Calendário do Casal para agendar compromissos',
+    'dashboard.planSomething': 'Que tal planejar algo especial?',
+    'dashboard.configureEvents': 'Configure eventos importantes no seu calendário para não esquecer nunca mais!',
     
     // Quick Access Menu
     'menu.diary': 'Diário',
@@ -129,6 +136,34 @@ const translations = {
     'home.finalCtaSubtitle': 'A cada dia que passa sem agir, vocês se distanciam mais. Comece hoje mesmo e veja a diferença em 7 dias.',
     'home.finalCtaButton': 'Salvar meu relacionamento agora',
     
+    // Home Page - Problems Section
+    'home.problemsFight': 'Brigam por qualquer coisa',
+    'home.problemsFightDesc': 'Pequenos problemas viram grandes discussões que machucam vocês dois.',
+    'home.problemsCommunication': 'Falta comunicação',
+    'home.problemsCommunicationDesc': 'Vocês não conseguem mais conversar sem que vire conflito ou frieza.',
+    'home.problemsPhone': 'Mais tempo no celular',
+    'home.problemsPhoneDesc': 'Preferem o telefone à companhia um do outro, perdendo a intimidade.',
+    'home.problemsAffection': 'Carinho diminuiu',
+    'home.problemsAffectionDesc': 'Beijos, abraços e momentos especiais estão cada vez mais raros.',
+    'home.problemsIntimacy': 'Intimidade em baixa',
+    'home.problemsIntimacyDesc': 'A conexão física e emocional não é mais como antes.',
+    'home.problemsGivingUp': 'Pensando em desistir',
+    'home.problemsGivingUpDesc': 'Às vezes vocês se perguntam se vale a pena continuar tentando.',
+    'home.problemsUrgent': 'Se você se identificou com 2 ou mais situações',
+    'home.problemsUrgentAction': '⚡ Começar a mudança agora',
+    
+    // Home Page - How it Works Section
+    'home.howItWorksTitle': 'Como vamos reacender a chama do seu amor',
+    'home.howItWorksSubtitle': 'Sua mentora especializada em reconexão está aqui para guiar vocês 24/7, com orientação personalizada para resgatar a paixão e fortalecer laços.',
+    'home.companion': 'Sua Companheira de Jornada',
+    'home.companionDesc': 'Entendo as emoções do casal e identifico onde está a desconexão para guiar vocês de volta ao amor.',
+    'home.guidance': 'Orientação Sob Medida',
+    'home.guidanceDesc': 'Cada relacionamento é único. Crio estratégias personalizadas baseadas na história de vocês dois.',
+    'home.alwaysThere': 'Sempre ao Seu Lado',
+    'home.alwaysThereDesc': 'Nos momentos mais difíceis, estou aqui. 24 horas por dia, 7 dias por semana, sem julgamentos.',
+    'home.crisis': 'Mediação nas Crises',
+    'home.crisisDesc': 'Quando tudo parece perdido, ajudo vocês a encontrarem o caminho de volta um para o outro.',
+    
     // Common
     'common.save': 'Salvar',
     'common.cancel': 'Cancelar',
@@ -183,6 +218,13 @@ const translations = {
     'dashboard.completeProfile': 'Complete your Couple Profile',
     'dashboard.profileProgress': 'Your profile is {progress}% complete. Complete it to receive personalized content!',
     'dashboard.completeProfileBtn': 'Complete Profile',
+    'dashboard.relationshipToday': 'How is your relationship today? Let\'s work together to strengthen it.',
+    'dashboard.shareFeeling': 'Share how you are feeling.',
+    
+    // Dashboard - Mood tips and daily tips
+    'dashboard.useCalendar': 'Use the Couple Calendar to schedule appointments',
+    'dashboard.planSomething': 'How about planning something special?',
+    'dashboard.configureEvents': 'Set up important events in your calendar so you never forget again!',
     
     // Quick Access Menu
     'menu.diary': 'Diary',
@@ -259,6 +301,34 @@ const translations = {
     'home.finalCtaSubtitle': 'Every day that passes without action, you drift further apart. Start today and see the difference in 7 days.',
     'home.finalCtaButton': 'Save my relationship now',
     
+    // Home Page - Problems Section
+    'home.problemsFight': 'Fight over anything',
+    'home.problemsFightDesc': 'Small problems become big arguments that hurt both of you.',
+    'home.problemsCommunication': 'Lack of communication',
+    'home.problemsCommunicationDesc': 'You can no longer talk without it becoming conflict or coldness.',
+    'home.problemsPhone': 'More time on phone',
+    'home.problemsPhoneDesc': 'You prefer the phone to each other\'s company, losing intimacy.',
+    'home.problemsAffection': 'Affection decreased',
+    'home.problemsAffectionDesc': 'Kisses, hugs and special moments are increasingly rare.',
+    'home.problemsIntimacy': 'Low intimacy',
+    'home.problemsIntimacyDesc': 'Physical and emotional connection is not like before.',
+    'home.problemsGivingUp': 'Thinking of giving up',
+    'home.problemsGivingUpDesc': 'Sometimes you wonder if it\'s worth continuing to try.',
+    'home.problemsUrgent': 'If you identified with 2 or more situations',
+    'home.problemsUrgentAction': '⚡ Start the change now',
+    
+    // Home Page - How it Works Section
+    'home.howItWorksTitle': 'How we will reignite your love\'s flame',
+    'home.howItWorksSubtitle': 'Your reconnection specialist mentor is here to guide you 24/7, with personalized guidance to rescue passion and strengthen bonds.',
+    'home.companion': 'Your Journey Companion',
+    'home.companionDesc': 'I understand couples\' emotions and identify where the disconnection is to guide you back to love.',
+    'home.guidance': 'Tailored Guidance',
+    'home.guidanceDesc': 'Every relationship is unique. I create personalized strategies based on your story together.',
+    'home.alwaysThere': 'Always by Your Side',
+    'home.alwaysThereDesc': 'In the most difficult moments, I\'m here. 24 hours a day, 7 days a week, without judgment.',
+    'home.crisis': 'Crisis Mediation',
+    'home.crisisDesc': 'When everything seems lost, I help you find your way back to each other.',
+    
     // Common
     'common.save': 'Save',
     'common.cancel': 'Cancel',
@@ -313,6 +383,13 @@ const translations = {
     'dashboard.completeProfile': 'Completa tu Perfil de Pareja',
     'dashboard.profileProgress': 'Tu perfil está {progress}% completo. ¡Complétalo para recibir contenido personalizado!',
     'dashboard.completeProfileBtn': 'Completar Perfil',
+    'dashboard.relationshipToday': '¿Cómo está tu relación hoy? Trabajemos juntos para fortalecerla.',
+    'dashboard.shareFeeling': 'Comparte cómo te sientes.',
+    
+    // Dashboard - Mood tips and daily tips
+    'dashboard.useCalendar': 'Usa el Calendario de Pareja para programar citas',
+    'dashboard.planSomething': '¿Qué tal planear algo especial?',
+    'dashboard.configureEvents': '¡Configura eventos importantes en tu calendario para no olvidar nunca más!',
     
     // Quick Access Menu
     'menu.diary': 'Diario',
@@ -388,6 +465,34 @@ const translations = {
     'home.finalCtaTitle': 'No dejes que tu relación llegue a su fin',
     'home.finalCtaSubtitle': 'Cada día que pasa sin actuar, se alejan más. Comienza hoy mismo y ve la diferencia en 7 días.',
     'home.finalCtaButton': 'Salvar mi relación ahora',
+    
+    // Home Page - Problems Section
+    'home.problemsFight': 'Pelean por cualquier cosa',
+    'home.problemsFightDesc': 'Pequeños problemas se convierten en grandes discusiones que los lastiman a ambos.',
+    'home.problemsCommunication': 'Falta comunicación',
+    'home.problemsCommunicationDesc': 'Ya no pueden hablar sin que se convierta en conflicto o frialdad.',
+    'home.problemsPhone': 'Más tiempo en el teléfono',
+    'home.problemsPhoneDesc': 'Prefieren el teléfono a la compañía del otro, perdiendo la intimidad.',
+    'home.problemsAffection': 'El cariño disminuyó',
+    'home.problemsAffectionDesc': 'Besos, abrazos y momentos especiales son cada vez más raros.',
+    'home.problemsIntimacy': 'Intimidad baja',
+    'home.problemsIntimacyDesc': 'La conexión física y emocional ya no es como antes.',
+    'home.problemsGivingUp': 'Pensando en rendirse',
+    'home.problemsGivingUpDesc': 'A veces se preguntan si vale la pena seguir intentando.',
+    'home.problemsUrgent': 'Si te identificaste con 2 o más situaciones',
+    'home.problemsUrgentAction': '⚡ Comenzar el cambio ahora',
+    
+    // Home Page - How it Works Section
+    'home.howItWorksTitle': 'Cómo vamos a reavivar la llama de su amor',
+    'home.howItWorksSubtitle': 'Tu mentora especialista en reconexión está aquí para guiarlos 24/7, con orientación personalizada para rescatar la pasión y fortalecer vínculos.',
+    'home.companion': 'Tu Compañera de Viaje',
+    'home.companionDesc': 'Entiendo las emociones de las parejas e identifico dónde está la desconexión para guiarlos de vuelta al amor.',
+    'home.guidance': 'Orientación a Medida',
+    'home.guidanceDesc': 'Cada relación es única. Creo estrategias personalizadas basadas en su historia juntos.',
+    'home.alwaysThere': 'Siempre a Tu Lado',
+    'home.alwaysThereDesc': 'En los momentos más difíciles, estoy aquí. 24 horas al día, 7 días a la semana, sin juicios.',
+    'home.crisis': 'Mediación en Crisis',
+    'home.crisisDesc': 'Cuando todo parece perdido, los ayudo a encontrar el camino de vuelta el uno al otro.',
     
     // Common
     'common.save': 'Guardar',

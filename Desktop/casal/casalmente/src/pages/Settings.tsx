@@ -1,9 +1,14 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { useAuth } from '../hooks/useAuth';
+import { usePersonalizedContent } from '../contexts/PersonalizedContentContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Settings() {
   const { user } = useAuth();
+  const { t } = useLanguage();
+  const { coupleProfile, getProfileCompleteness } = usePersonalizedContent();
   const [settings, setSettings] = useState({
     theme: 'light',
     notifications: true,
@@ -46,20 +51,59 @@ export default function Settings() {
       <div className="container-app py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold font-display text-neutral-900 mb-2">
-            Configurações ⚙️
+          <h1 className="text-3xl font-bold font-display text-neutral-900 dark:text-white mb-2">
+            {t('settings.title')} ⚙️
           </h1>
-          <p className="text-neutral-600">
+          <p className="text-neutral-600 dark:text-neutral-300">
             Personalize sua experiência no CoupleX e gerencie sua conta.
           </p>
         </div>
+
+        {/* Profile Completion Section */}
+        {getProfileCompleteness() < 100 && (
+          <div className="card bg-gradient-to-r from-rose-50 to-pink-50 border-2 border-rose-200 mb-8">
+            <div className="flex items-start gap-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-rose-500 to-pink-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">
+                  {t('dashboard.completeProfile')}
+                </h2>
+                <p className="text-neutral-700 dark:text-neutral-300 mb-4">
+                  {t('dashboard.profileProgress').replace('{progress}', getProfileCompleteness().toString())}
+                </p>
+                
+                {/* Progress Bar */}
+                <div className="bg-white/70 rounded-full h-3 mb-4">
+                  <div 
+                    className="bg-gradient-to-r from-rose-500 to-pink-500 h-3 rounded-full transition-all duration-500"
+                    style={{ width: `${getProfileCompleteness()}%` }}
+                  />
+                </div>
+                
+                <Link 
+                  to="/perfil-casal"
+                  className="btn-primary inline-flex items-center"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  {t('dashboard.completeProfileBtn')}
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Perfil do Usuário */}
           <div className="lg:col-span-2 space-y-8">
             {/* Informações Pessoais */}
             <div className="card">
-              <h2 className="text-2xl font-bold text-neutral-900 mb-6 flex items-center">
+              <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center">
                 <span className="mr-2">👤</span>
                 Informações Pessoais
               </h2>
@@ -75,7 +119,7 @@ export default function Settings() {
                     <h3 className="text-lg font-semibold text-neutral-900">
                       {user?.displayName || 'Usuário'}
                     </h3>
-                    <p className="text-neutral-600">{user?.email}</p>
+                    <p className="text-neutral-600 dark:text-neutral-300">{user?.email}</p>
                     <button className="text-rose-600 text-sm hover:underline mt-1">
                       Alterar foto do perfil
                     </button>
@@ -141,7 +185,7 @@ export default function Settings() {
 
             {/* Preferências */}
             <div className="card">
-              <h2 className="text-2xl font-bold text-neutral-900 mb-6 flex items-center">
+              <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center">
                 <span className="mr-2">🎨</span>
                 Preferências
               </h2>

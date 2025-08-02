@@ -1,27 +1,30 @@
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Home() {
+  const { t } = useLanguage();
+  
   return (
     <Layout showHeader>
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-white to-primary-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-white to-primary-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900"></div>
         <div className="relative container-app py-20 sm:py-32">
           <div className="text-center max-w-4xl mx-auto">
             <div className="animate-fade-in">
-              <div className="inline-flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-rose-200 mb-8">
-                <span className="text-rose-600 text-sm font-medium">💕 Sua Mentora dos Relacionamentos</span>
+              <div className="inline-flex items-center px-4 py-2 bg-white/60 dark:bg-neutral-800/60 backdrop-blur-sm rounded-full border border-rose-200 dark:border-neutral-600 mb-8">
+                <span className="text-rose-600 text-sm font-medium">💕 {t('home.heroTagline')}</span>
               </div>
               
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold font-display text-neutral-900 mb-6 leading-tight">
-                A conexão <span className="bg-gradient-to-r from-rose-500 to-primary-500 bg-clip-text text-transparent">esfriou</span>?
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold font-display text-neutral-900 dark:text-white mb-6 leading-tight">
+                {t('home.heroTitle1')} <span className="bg-gradient-to-r from-rose-500 to-primary-500 bg-clip-text text-transparent">{t('home.heroTitle2')}</span>?
                 <br />
-                <span className="bg-gradient-to-r from-primary-500 to-rose-500 bg-clip-text text-transparent">CoupleX</span> te ajuda a reacender
+                <span className="bg-gradient-to-r from-primary-500 to-rose-500 bg-clip-text text-transparent">{t('home.heroTitle3')}</span> {t('home.heroTitle4')}
               </h1>
               
-              <p className="text-xl sm:text-2xl text-neutral-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Reacenda a paixão, reconecte corações e fortaleça seu relacionamento com nossa companheira especializada em salvar famílias.
+              <p className="text-xl sm:text-2xl text-neutral-600 dark:text-neutral-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+                {t('home.heroSubtitle')}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -29,23 +32,23 @@ export default function Home() {
                   to="/auth?mode=signup"
                   className="btn-primary text-lg px-8 py-4 shadow-glow"
                 >
-                  🚀 Começar Agora - Grátis
+                  🚀 {t('home.ctaPrimary')}
                 </Link>
                 <Link
                   to="#como-funciona"
                   className="btn-secondary text-lg px-8 py-4"
                 >
-                  💡 Conhecer sua Mentora
+                  💡 {t('home.ctaSecondary')}
                 </Link>
               </div>
               
-              <div className="flex items-center justify-center space-x-6 text-sm text-neutral-500">
+              <div className="flex items-center justify-center space-x-6 text-sm text-neutral-500 dark:text-neutral-400">
                 <div className="flex items-center space-x-1">
                   <span className="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                  <span>4.9/5 de satisfação</span>
+                  <span>{t('home.trustBadge1')}</span>
                 </div>
-                <div>+15.000 casais salvos</div>
-                <div>🔒 100% privado e seguro</div>
+                <div>{t('home.trustBadge2')}</div>
+                <div>🔒 {t('home.trustBadge3')}</div>
               </div>
             </div>
           </div>
@@ -53,14 +56,14 @@ export default function Home() {
       </section>
 
       {/* Problem Section */}
-      <section id="problemas" className="py-20 bg-white">
+      <section id="problemas" className="py-20 bg-white dark:bg-neutral-900">
         <div className="container-app">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-5xl font-bold font-display text-neutral-900 mb-6">
-              Reconhece esses sinais no seu relacionamento?
+            <h2 className="text-3xl sm:text-5xl font-bold font-display text-neutral-900 dark:text-white mb-6">
+              {t('home.problemsTitle')}
             </h2>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-              Se você se identifica com 2 ou mais situações abaixo, seu relacionamento precisa de atenção urgente.
+            <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
+              {t('home.problemsSubtitle')}
             </p>
           </div>
 
@@ -68,45 +71,45 @@ export default function Home() {
             {[
               {
                 icon: '💔',
-                title: 'Brigam por qualquer coisa',
-                description: 'Pequenos problemas viram grandes discussões que machucam vocês dois.',
+                title: t('home.problemsFight'),
+                description: t('home.problemsFightDesc'),
                 color: 'border-red-200 bg-red-50'
               },
               {
                 icon: '🤐',
-                title: 'Falta comunicação',
-                description: 'Vocês não conseguem mais conversar sem que vire conflito ou frieza.',
+                title: t('home.problemsCommunication'),
+                description: t('home.problemsCommunicationDesc'),
                 color: 'border-orange-200 bg-orange-50'
               },
               {
                 icon: '📱',
-                title: 'Mais tempo no celular',
-                description: 'Preferem o telefone à companhia um do outro, perdendo a intimidade.',
+                title: t('home.problemsPhone'),
+                description: t('home.problemsPhoneDesc'),
                 color: 'border-blue-200 bg-blue-50'
               },
               {
                 icon: '😔',
-                title: 'Carinho diminuiu',
-                description: 'Beijos, abraços e momentos especiais estão cada vez mais raros.',
+                title: t('home.problemsAffection'),
+                description: t('home.problemsAffectionDesc'),
                 color: 'border-purple-200 bg-purple-50'
               },
               {
                 icon: '🛌',
-                title: 'Intimidade em baixa',
-                description: 'A conexão física e emocional não é mais como antes.',
+                title: t('home.problemsIntimacy'),
+                description: t('home.problemsIntimacyDesc'),
                 color: 'border-pink-200 bg-pink-50'
               },
               {
                 icon: '😢',
-                title: 'Pensando em desistir',
-                description: 'Às vezes vocês se perguntam se vale a pena continuar tentando.',
+                title: t('home.problemsGivingUp'),
+                description: t('home.problemsGivingUpDesc'),
                 color: 'border-gray-200 bg-gray-50'
               }
             ].map((problem, index) => (
               <div key={index} className={`card hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1 ${problem.color} border-2 text-center sm:text-left`}>
                 <div className="text-4xl lg:text-5xl mb-4 flex justify-center sm:justify-start">{problem.icon}</div>
-                <h3 className="text-lg lg:text-xl font-bold font-display text-neutral-900 mb-3">{problem.title}</h3>
-                <p className="text-neutral-700 leading-relaxed text-sm lg:text-base">{problem.description}</p>
+                <h3 className="text-lg lg:text-xl font-bold font-display text-neutral-900 dark:text-white mb-3">{problem.title}</h3>
+                <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed text-sm lg:text-base">{problem.description}</p>
               </div>
             ))}
           </div>
@@ -114,13 +117,13 @@ export default function Home() {
           <div className="text-center mt-16">
             <div className="inline-block card bg-gradient-to-r from-primary-50 to-rose-50 border-2 border-primary-200">
               <p className="text-xl font-semibold text-primary-900 mb-4">
-                <strong>Se você se identificou com 2 ou mais situações</strong>, seu relacionamento precisa de ajuda urgente.
+                <strong>{t('home.problemsUrgent')}</strong>, seu relacionamento precisa de ajuda urgente.
               </p>
               <Link
                 to="/auth?mode=signup"
                 className="btn-primary text-lg"
               >
-                ⚡ Começar a mudança agora
+                {t('home.problemsUrgentAction')}
               </Link>
             </div>
           </div>
@@ -128,15 +131,14 @@ export default function Home() {
       </section>
 
       {/* Solution Section */}
-      <section id="como-funciona" className="py-20 bg-gradient-to-br from-neutral-50 to-rose-50">
+      <section id="como-funciona" className="py-20 bg-gradient-to-br from-neutral-50 to-rose-50 dark:from-neutral-800 dark:to-neutral-900">
         <div className="container-app">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-5xl font-bold font-display text-neutral-900 mb-6">
-              Como vamos reacender a chama do seu amor
+              {t('home.howItWorksTitle')}
             </h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              Sua mentora especializada em reconexão está aqui para guiar vocês 24/7, 
-              com orientação personalizada para resgatar a paixão e fortalecer laços.
+              {t('home.howItWorksSubtitle')}
             </p>
           </div>
 
@@ -148,10 +150,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-lg lg:text-xl font-bold font-display text-neutral-900 mb-2">
-                    Sua Companheira de Jornada
+                    {t('home.companion')}
                   </h3>
                   <p className="text-neutral-700 text-sm lg:text-base">
-                    Entendo as emoções do casal e identifico onde está a desconexão para guiar vocês de volta ao amor.
+                    {t('home.companionDesc')}
                   </p>
                 </div>
               </div>
@@ -162,10 +164,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-lg lg:text-xl font-bold font-display text-neutral-900 mb-2">
-                    Orientação Sob Medida
+                    {t('home.guidance')}
                   </h3>
                   <p className="text-neutral-700 text-sm lg:text-base">
-                    Cada relacionamento é único. Crio estratégias personalizadas baseadas na história de vocês dois.
+                    {t('home.guidanceDesc')}
                   </p>
                 </div>
               </div>
@@ -176,10 +178,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-lg lg:text-xl font-bold font-display text-neutral-900 mb-2">
-                    Sempre ao Seu Lado
+                    {t('home.alwaysThere')}
                   </h3>
                   <p className="text-neutral-700 text-sm lg:text-base">
-                    Nos momentos mais difíceis, estou aqui. 24 horas por dia, 7 dias por semana, sem julgamentos.
+                    {t('home.alwaysThereDesc')}
                   </p>
                 </div>
               </div>
@@ -190,10 +192,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-lg lg:text-xl font-bold font-display text-neutral-900 mb-2">
-                    Mediação nas Crises
+                    {t('home.crisis')}
                   </h3>
                   <p className="text-neutral-700 text-sm lg:text-base">
-                    Quando tudo parece perdido, ajudo vocês a encontrarem o caminho de volta um para o outro.
+                    {t('home.crisisDesc')}
                   </p>
                 </div>
               </div>
