@@ -80,10 +80,10 @@ export default function SmartRemindersWidget() {
   }
 
   return (
-    <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-soft p-4 border border-neutral-100 dark:border-neutral-700">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-soft p-3 sm:p-4 border border-neutral-100 dark:border-neutral-700">
+      <div className="flex items-center justify-between mb-3 sm:mb-4">
         <div className="flex items-center space-x-2">
-          <div className="text-xl">🧠</div>
+          <div className="text-lg sm:text-xl">🧠</div>
           <div>
             <h3 className="font-semibold text-neutral-800 dark:text-neutral-200 text-sm">Lembretes Inteligentes</h3>
             <p className="text-xs text-neutral-600 dark:text-neutral-400">IA contextual</p>
