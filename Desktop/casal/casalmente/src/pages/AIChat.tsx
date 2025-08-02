@@ -38,6 +38,15 @@ Pode me contar o que está acontecendo? Como vocês estão se sentindo ultimamen
     scrollToBottom();
   }, [messages]);
 
+  // Test Groq connection on component mount
+  useEffect(() => {
+    const testGroqConnection = async () => {
+      console.log('🔍 Testing Groq connection on component mount...');
+      await groqService.testConnection();
+    };
+    testGroqConnection();
+  }, []);
+
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -57,7 +66,9 @@ Pode me contar o que está acontecendo? Como vocês estão se sentindo ultimamen
 
     try {
       // Use Groq AI service for real AI responses
+      console.log('🚀 AIChat: Calling Groq service with message:', currentInput);
       const aiResponseContent = await groqService.sendMessage(currentInput);
+      console.log('🎯 AIChat: Received response from Groq:', aiResponseContent.substring(0, 50) + '...');
       
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),

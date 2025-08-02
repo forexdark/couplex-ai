@@ -1,9 +1,19 @@
 import Groq from 'groq-sdk';
 
 // Configure your Groq API key here
+const apiKey = import.meta.env.VITE_GROQ_API_KEY || import.meta.env.REACT_APP_GROQ_API_KEY || 'your-groq-api-key-here';
+
+// Debug log (remove in production)
+console.log('Groq API Key configured:', apiKey ? 'Yes' : 'No');
+console.log('Available env vars:', {
+  vite: import.meta.env.VITE_GROQ_API_KEY ? 'exists' : 'missing',
+  react: import.meta.env.REACT_APP_GROQ_API_KEY ? 'exists' : 'missing'
+});
+
 const groq = new Groq({
-  apiKey: process.env.REACT_APP_GROQ_API_KEY || 'your-groq-api-key-here',
-  dangerouslyAllowBrowser: true
+  apiKey: apiKey,
+  dangerouslyAllowBrowser: true,
+  baseURL: 'https://api.groq.com/openai/v1' // Explicit base URL
 });
 
 interface ChatMessage {
@@ -55,6 +65,9 @@ Comece sempre validando os sentimentos da pessoa antes de dar conselhos.`
   }
 
   async sendMessage(userMessage: string): Promise<string> {
+    console.log('🤖 Groq Service: Sending message:', userMessage);
+    console.log('🔑 API Key available:', apiKey !== 'your-groq-api-key-here');
+    
     try {
       // Add user message to conversation history
       this.conversationHistory.push({
@@ -62,17 +75,31 @@ Comece sempre validando os sentimentos da pessoa antes de dar conselhos.`
         content: userMessage
       });
 
-      // Call Groq API
+      console.log('📤 Calling Groq API with:', {
+        model: 'llama3-8b-8192',
+        messageCount: this.conversationHistory.length,
+        hasApiKey: !!apiKey && apiKey !== 'your-groq-api-key-here'
+      });
+
+      // Call Groq API - using free model
       const completion = await groq.chat.completions.create({
         messages: this.conversationHistory,
-        model: 'llama3-8b-8192', // Using Llama 3 8B model (free tier)
+        model: 'llama-3.1-8b-instant', // Free model on Groq
         temperature: 0.7,
-        max_tokens: 500,
+        max_tokens: 400,
         top_p: 0.9,
+      });
+
+      console.log('📥 Groq API Response received:', {
+        choices: completion.choices?.length || 0,
+        model: completion.model,
+        usage: completion.usage
       });
 
       const assistantResponse = completion.choices[0]?.message?.content || 
         'Desculpe, tive um problema técnico. Pode repetir sua pergunta? 💕';
+
+      console.log('✅ Groq AI Response:', assistantResponse.substring(0, 100) + '...');
 
       // Add assistant response to conversation history
       this.conversationHistory.push({
@@ -90,9 +117,15 @@ Comece sempre validando os sentimentos da pessoa antes de dar conselhos.`
 
       return assistantResponse;
     } catch (error) {
-      console.error('Erro ao chamar Groq API:', error);
+      console.error('❌ Erro ao chamar Groq API:', error);
+      console.error('🔍 Error details:', {
+        message: error.message,
+        status: error.status || 'unknown',
+        type: error.constructor.name
+      });
       
       // Fallback to basic responses if API fails
+      console.log('🔄 Using fallback response');
       return this.getFallbackResponse(userMessage);
     }
   }
@@ -117,6 +150,23 @@ Comece sempre validando os sentimentos da pessoa antes de dar conselhos.`
 
   clearHistory(): void {
     this.conversationHistory = this.conversationHistory.slice(0, 1); // Keep only system message
+  }
+
+  // Test method to verify API connectivity
+  async testConnection(): Promise<boolean> {
+    try {
+      console.log('🧪 Testing Groq API connection...');
+      const response = await groq.chat.completions.create({
+        messages: [{ role: 'user', content: 'Hi' }],
+        model: 'llama-3.1-8b-instant',
+        max_tokens: 10
+      });
+      console.log('✅ Groq API test successful:', response.choices[0]?.message?.content);
+      return true;
+    } catch (error) {
+      console.error('❌ Groq API test failed:', error);
+      return false;
+    }
   }
 }
 
