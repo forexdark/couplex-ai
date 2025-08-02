@@ -87,24 +87,25 @@ export default function CoupleCalendar() {
   };
 
   return (
-    <Layout showHeader>
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle="📅 Calendário do Casal"
+      navigationActions={
+        <button 
+          onClick={() => setShowForm(true)}
+          className="btn-primary text-sm px-3 py-2"
+        >
+          ✨ Novo Evento
+        </button>
+      }
+    >
       <div className="container-app py-8">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold font-display text-neutral-900 mb-2">
-              Calendário do Casal 📅
-            </h1>
-            <p className="text-neutral-600">
-              Organize encontros, datas especiais e momentos importantes para vocês dois.
-            </p>
-          </div>
-          <button 
-            onClick={() => setShowForm(true)}
-            className="btn-primary mt-4 sm:mt-0"
-          >
-            ✨ Novo Evento
-          </button>
+        {/* Welcome Message */}
+        <div className="text-center mb-8">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300">
+            Organize encontros, datas especiais e momentos importantes para vocês dois.
+          </p>
         </div>
 
         {/* Upcoming Events Alert */}
@@ -140,8 +141,8 @@ export default function CoupleCalendar() {
 
         {/* Form Modal */}
         {showForm && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="card max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+            <div className="card max-w-[95vw] sm:max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slideInUp">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-neutral-900">Novo Evento</h2>
                 <button 
@@ -158,7 +159,7 @@ export default function CoupleCalendar() {
                   <label className="block text-sm font-semibold text-neutral-700 mb-3">
                     Tipo de evento
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {eventTypes.map((type) => (
                       <button
                         key={type.value}

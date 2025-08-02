@@ -200,14 +200,15 @@ export default function EmotionalDiary() {
   const insights = getInsights();
 
   return (
-    <Layout>
-      <div className="max-w-7xl mx-auto p-6">
-        {/* Header */}
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle="📔 Diário Emocional"
+    >
+      <div className="container-app py-8">
+        {/* Welcome Message */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-neutral-800 mb-4">
-            📔 Diário Emocional Avançado
-          </h1>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300">
             Acompanhe sua jornada emocional e descubra padrões no seu relacionamento
           </p>
         </div>
@@ -280,7 +281,7 @@ export default function EmotionalDiary() {
             {showForm && (
               <div className="bg-white rounded-2xl shadow-soft p-8 mb-8">
                 <form onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     {/* Left Column */}
                     <div className="space-y-6">
                       {/* Mood Selection */}
@@ -288,7 +289,7 @@ export default function EmotionalDiary() {
                         <label className="block text-sm font-medium text-neutral-700 mb-3">
                           Como você está se sentindo?
                         </label>
-                        <div className="grid grid-cols-5 gap-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
                           {moods.map((mood) => (
                             <button
                               key={mood.value}
@@ -298,14 +299,14 @@ export default function EmotionalDiary() {
                                 mood: mood.value, 
                                 moodScore: mood.score 
                               }))}
-                              className={`p-4 rounded-xl text-center transition-all ${
+                              className={`group p-4 rounded-xl text-center transition-all duration-200 transform hover:scale-105 hover:shadow-lg ${
                                 formData.mood === mood.value
-                                  ? 'bg-primary-500 text-white scale-105'
-                                  : 'bg-neutral-100 hover:bg-neutral-200'
+                                  ? 'bg-primary-500 text-white scale-105 shadow-lg'
+                                  : 'bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-300'
                               }`}
                             >
-                              <div className="text-2xl mb-1">{mood.emoji}</div>
-                              <div className="text-xs">{mood.label}</div>
+                              <div className="text-2xl sm:text-3xl mb-2 group-hover:scale-110 transition-transform duration-200">{mood.emoji}</div>
+                              <div className="text-xs font-medium leading-tight">{mood.label}</div>
                             </button>
                           ))}
                         </div>
@@ -320,7 +321,7 @@ export default function EmotionalDiary() {
                           type="text"
                           value={formData.title}
                           onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                          className="input-field"
+                          className="w-full px-4 py-3 text-sm border border-neutral-300 dark:border-neutral-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all duration-200 placeholder-neutral-400 dark:placeholder-neutral-500 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
                           placeholder="Ex: Um dia especial com meu amor"
                           required
                         />
@@ -334,7 +335,7 @@ export default function EmotionalDiary() {
                         <textarea
                           value={formData.content}
                           onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
-                          className="input-field min-h-[120px]"
+                          className="w-full px-4 py-3 text-sm border border-neutral-300 dark:border-neutral-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all duration-200 placeholder-neutral-400 dark:placeholder-neutral-500 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 min-h-[120px] resize-none"
                           placeholder="Descreva seus sentimentos, o que aconteceu, como se sente sobre o relacionamento..."
                           required
                         />
@@ -348,16 +349,16 @@ export default function EmotionalDiary() {
                         <label className="block text-sm font-medium text-neutral-700 mb-3">
                           Quais emoções você sentiu?
                         </label>
-                        <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
+                        <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-1">
                           {emotions.map((emotion) => (
                             <button
                               key={emotion}
                               type="button"
                               onClick={() => handleEmotionToggle(emotion)}
-                              className={`px-3 py-1 rounded-full text-sm transition-all ${
+                              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 transform hover:scale-105 ${
                                 formData.emotions.includes(emotion)
-                                  ? 'bg-primary-500 text-white'
-                                  : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
+                                  ? 'bg-primary-500 text-white shadow-md scale-105'
+                                  : 'bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-600 hover:border-primary-300 dark:hover:border-primary-500'
                               }`}
                             >
                               {emotion}
@@ -371,16 +372,16 @@ export default function EmotionalDiary() {
                         <label className="block text-sm font-medium text-neutral-700 mb-3">
                           O que influenciou seu humor?
                         </label>
-                        <div className="flex flex-wrap gap-2 max-h-24 overflow-y-auto">
+                        <div className="flex flex-wrap gap-2 max-h-24 overflow-y-auto p-1">
                           {commonTriggers.map((trigger) => (
                             <button
                               key={trigger}
                               type="button"
                               onClick={() => handleTriggerToggle(trigger)}
-                              className={`px-3 py-1 rounded-full text-sm transition-all ${
+                              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 transform hover:scale-105 ${
                                 formData.triggers.includes(trigger)
-                                  ? 'bg-amber-500 text-white'
-                                  : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
+                                  ? 'bg-amber-500 text-white shadow-md scale-105'
+                                  : 'bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-600 hover:border-amber-300 dark:hover:border-amber-500'
                               }`}
                             >
                               {trigger}
@@ -397,7 +398,7 @@ export default function EmotionalDiary() {
                         <textarea
                           value={formData.gratitude}
                           onChange={(e) => setFormData(prev => ({ ...prev, gratitude: e.target.value }))}
-                          className="input-field min-h-[80px]"
+                          className="w-full px-4 py-3 text-sm border border-neutral-300 dark:border-neutral-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all duration-200 placeholder-neutral-400 dark:placeholder-neutral-500 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 min-h-[80px] resize-none"
                           placeholder="Ex: Sou grato pelo carinho que meu parceiro demonstrou hoje..."
                         />
                       </div>
@@ -410,7 +411,7 @@ export default function EmotionalDiary() {
                         <textarea
                           value={formData.reflection}
                           onChange={(e) => setFormData(prev => ({ ...prev, reflection: e.target.value }))}
-                          className="input-field min-h-[80px]"
+                          className="w-full px-4 py-3 text-sm border border-neutral-300 dark:border-neutral-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all duration-200 placeholder-neutral-400 dark:placeholder-neutral-500 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 min-h-[80px] resize-none"
                           placeholder="O que você aprendeu hoje? Como pode melhorar?"
                         />
                       </div>

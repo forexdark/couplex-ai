@@ -113,14 +113,15 @@ export default function Dashboard() {
   };
 
   return (
-    <Layout showHeader>
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle={`${t('dashboard.welcome')}, ${user?.displayName?.split(' ')[0] || 'querido(a)'}! 👋`}
+    >
       <div className="container-app py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold font-display text-neutral-900 dark:text-white mb-2">
-            {t('dashboard.welcome')}, {user?.displayName?.split(' ')[0] || 'querido(a)'}!
-          </h1>
-          <p className="text-neutral-600 dark:text-neutral-300">
+        {/* Welcome Message */}
+        <div className="text-center mb-8">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300">
             {t('dashboard.relationshipToday')}
           </p>
         </div>
@@ -135,7 +136,7 @@ export default function Dashboard() {
             </div>
             <div className="flex-1">
               <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">{t('dashboard.todayInfo')}</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="bg-white/70 dark:bg-neutral-800/70 rounded-lg p-4">
                   <p className="text-neutral-700 font-semibold mb-2 flex items-center">
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +186,7 @@ export default function Dashboard() {
             </svg>
             {t('dashboard.quickAccess')}
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { 
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>, 
@@ -230,7 +231,7 @@ export default function Dashboard() {
                 className={`group relative overflow-hidden rounded-2xl border-2 border-transparent hover:border-${item.color}-300 bg-gradient-to-br ${item.bgGradient} ${item.hoverBg} transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl p-6`}
               >
                 <div className="text-center">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${item.gradient} rounded-2xl flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform shadow-lg group-hover:shadow-xl`}>
+                  <div className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r ${item.gradient} rounded-2xl flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform shadow-lg group-hover:shadow-xl`}>
                     <div className="text-white">{item.icon}</div>
                   </div>
                   <span className={`text-sm font-bold text-${item.color}-700 block leading-tight`}>
@@ -298,31 +299,34 @@ export default function Dashboard() {
             ) : (
               <div>
                 {showMoodSelector ? (
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {moods.map((mood, index) => (
                       <button
                         key={index}
                         onClick={() => handleMoodSelect(mood)}
-                        className="group p-3 rounded-xl border-2 border-neutral-200 hover:border-rose-300 transition-all text-center bg-white hover:bg-rose-50"
+                        className="group p-4 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 hover:border-rose-300 dark:hover:border-rose-500 transition-all duration-200 text-center bg-white dark:bg-neutral-800 hover:bg-rose-50 dark:hover:bg-rose-900/20 transform hover:scale-105 hover:shadow-lg"
                       >
-                        <div className="text-2xl mb-1 group-hover:scale-110 transition-transform">{mood.emoji}</div>
-                        <div className="text-xs font-medium text-neutral-700 group-hover:text-rose-700">
+                        <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-200">{mood.emoji}</div>
+                        <div className="text-xs font-medium text-neutral-700 dark:text-neutral-300 group-hover:text-rose-700 dark:group-hover:text-rose-300 leading-tight">
                           {mood.label}
                         </div>
                       </button>
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center">
-                    <p className="text-neutral-600 mb-4">{t('dashboard.shareFeeling')}</p>
+                  <div className="text-center space-y-4">
+                    <div className="bg-gradient-to-r from-rose-50 to-pink-50 dark:from-rose-900/20 dark:to-pink-900/20 rounded-xl p-4 border border-rose-200 dark:border-rose-700">
+                      <p className="text-neutral-600 dark:text-neutral-300 mb-2">{t('dashboard.shareFeeling')}</p>
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">Escolha o emoji que representa como você está se sentindo agora</p>
+                    </div>
                     <button 
                       onClick={() => setShowMoodSelector(true)}
-                      className="btn-primary w-full flex items-center justify-center"
+                      className="btn-primary w-full flex items-center justify-center space-x-2 py-4 text-lg"
                     >
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                       </svg>
-                      {t('dashboard.makeCheckIn')}
+                      <span>{t('dashboard.makeCheckIn')}</span>
                     </button>
                   </div>
                 )}
@@ -386,7 +390,7 @@ export default function Dashboard() {
             </svg>
             {t('dashboard.specialFeatures')}
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>,

@@ -201,24 +201,25 @@ export default function RelationshipGoals() {
   };
 
   return (
-    <Layout showHeader>
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle="🎯 Metas do Relacionamento"
+      navigationActions={
+        <button 
+          onClick={() => setShowForm(true)}
+          className="btn-primary text-sm px-3 py-2"
+        >
+          ✨ Nova Meta
+        </button>
+      }
+    >
       <div className="container-app py-8">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold font-display text-neutral-900 mb-2">
-              Metas do Relacionamento 🎯
-            </h1>
-            <p className="text-neutral-600">
-              Definam e acompanhem objetivos importantes para fortalecer o relacionamento de vocês.
-            </p>
-          </div>
-          <button 
-            onClick={() => setShowForm(true)}
-            className="btn-primary mt-4 sm:mt-0"
-          >
-            ✨ Nova Meta
-          </button>
+        {/* Welcome Message */}
+        <div className="text-center mb-8">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300">
+            Definam e acompanhem objetivos importantes para fortalecer o relacionamento de vocês.
+          </p>
         </div>
 
         {/* Category Filter */}
@@ -227,10 +228,10 @@ export default function RelationshipGoals() {
             <button
               key={category.value}
               onClick={() => setSelectedCategory(category.value)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 transform hover:scale-105 ${
                 selectedCategory === category.value
-                  ? 'bg-rose-500 text-white shadow-md'
-                  : 'bg-neutral-100 text-neutral-700 hover:bg-rose-100'
+                  ? 'bg-rose-500 text-white shadow-md scale-105'
+                  : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-rose-100 dark:hover:bg-rose-900/20 hover:text-rose-700 dark:hover:text-rose-300'
               }`}
             >
               <span className="mr-2">{category.emoji}</span>
@@ -360,8 +361,8 @@ export default function RelationshipGoals() {
 
         {/* Form Modal */}
         {showForm && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="card max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+            <div className="card max-w-[95vw] sm:max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-slideInUp">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-neutral-900">Nova Meta do Relacionamento</h2>
                 <button 
@@ -376,7 +377,7 @@ export default function RelationshipGoals() {
                 {/* Templates */}
                 <div>
                   <h3 className="font-semibold text-neutral-700 mb-3">💡 Use um modelo ou crie do zero:</h3>
-                  <div className="grid md:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {goalTemplates.map((template, index) => {
                       const categoryConfig = getCategoryConfig(template.category);
                       return (
@@ -424,7 +425,7 @@ export default function RelationshipGoals() {
                     />
                   </div>
 
-                  <div className="grid md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-sm font-semibold text-neutral-700 mb-2">
                         Categoria

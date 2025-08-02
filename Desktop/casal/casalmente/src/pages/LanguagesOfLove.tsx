@@ -357,14 +357,15 @@ export default function LanguagesOfLove() {
   }
 
   return (
-    <Layout showHeader>
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle="💕 Linguagens do Amor"
+    >
       <div className="container-app py-12">
-        {/* Header */}
+        {/* Welcome Message */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold font-display text-neutral-900 mb-6">
-            Descubra sua Linguagem do Amor
-          </h1>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto mb-8">
             Baseado no livro best-seller de Gary Chapman, este quiz vai revelar como você 
             expressa e recebe amor de forma mais profunda.
           </p>

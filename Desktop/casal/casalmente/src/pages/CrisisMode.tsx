@@ -175,14 +175,15 @@ export default function CrisisMode() {
   };
 
   return (
-    <Layout showHeader>
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle="🆘 Modo Crise"
+    >
       <div className="container-app py-8 max-w-4xl">
-        {/* Header */}
+        {/* Welcome Message */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold font-display text-neutral-900 mb-2">
-            Modo Crise 🆘
-          </h1>
-          <p className="text-neutral-600">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300">
             Vamos te ajudar a navegar por este momento difícil com orientações personalizadas.
           </p>
         </div>

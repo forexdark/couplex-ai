@@ -297,14 +297,15 @@ export default function ActionPlans() {
   ];
 
   return (
-    <Layout>
-      <div className="max-w-6xl mx-auto p-6">
-        {/* Header */}
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle="📋 Planos de Ação"
+    >
+      <div className="container-app py-8">
+        {/* Welcome Message */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-neutral-800 mb-4">
-            Planos de Ação Interativos
-          </h1>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300">
             Tarefas e desafios personalizados para fortalecer seu relacionamento
           </p>
         </div>

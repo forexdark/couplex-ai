@@ -200,14 +200,15 @@ export default function PersonalizedSurprises() {
   };
 
   return (
-    <Layout showHeader>
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle="🎁 Surpresas Personalizadas"
+    >
       <div className="container-app py-8">
-        {/* Header */}
+        {/* Welcome Message */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold font-display text-neutral-900 mb-2">
-            Surpresas Personalizadas 🎁
-          </h1>
-          <p className="text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
             Ideias especiais criadas pela IA para vocês dois. Escolha uma categoria e descubra 
             maneiras únicas de surpreender seu parceiro e fortalecer seu relacionamento.
           </p>
@@ -219,10 +220,10 @@ export default function PersonalizedSurprises() {
             <button
               key={category.value}
               onClick={() => setSelectedCategory(category.value)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 transform hover:scale-105 ${
                 selectedCategory === category.value
-                  ? 'bg-rose-500 text-white shadow-md'
-                  : 'bg-neutral-100 text-neutral-700 hover:bg-rose-100'
+                  ? 'bg-rose-500 text-white shadow-md scale-105'
+                  : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-rose-100 dark:hover:bg-rose-900/20 hover:text-rose-700 dark:hover:text-rose-300'
               }`}
             >
               <span className="mr-2">{category.emoji}</span>
@@ -281,8 +282,8 @@ export default function PersonalizedSurprises() {
 
         {/* Surprise Details Modal */}
         {showDetails && currentSurprise && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="card max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+            <div className="card max-w-[95vw] sm:max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 animate-slideInUp">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-neutral-900">{currentSurprise.title}</h2>
                 <button 

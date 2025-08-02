@@ -47,14 +47,15 @@ export default function Settings() {
   };
 
   return (
-    <Layout showHeader>
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle={`${t('settings.title')} ⚙️`}
+    >
       <div className="container-app py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold font-display text-neutral-900 dark:text-white mb-2">
-            {t('settings.title')} ⚙️
-          </h1>
-          <p className="text-neutral-600 dark:text-neutral-300">
+        {/* Welcome Message */}
+        <div className="text-center mb-8">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300">
             Personalize sua experiência no CoupleX e gerencie sua conta.
           </p>
         </div>
@@ -98,7 +99,7 @@ export default function Settings() {
           </div>
         )}
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Perfil do Usuário */}
           <div className="lg:col-span-2 space-y-8">
             {/* Informações Pessoais */}
@@ -126,7 +127,7 @@ export default function Settings() {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-neutral-700 mb-2">
                       Nome do parceiro(a)
@@ -387,8 +388,8 @@ export default function Settings() {
 
         {/* Modal de Convite */}
         {showInviteModal && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="card max-w-2xl w-full">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+            <div className="card max-w-[95vw] sm:max-w-2xl w-full animate-slideInUp">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-neutral-900">Convidar Parceiro(a)</h2>
                 <button 

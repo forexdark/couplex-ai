@@ -111,20 +111,21 @@ Pode me contar o que está acontecendo? Como vocês estão se sentindo ultimamen
   };
 
   return (
-    <Layout showHeader>
+    <Layout 
+      showHeader 
+      showNavigation 
+      navigationTitle="Chat com Mentora 💬"
+    >
       <div className="container-app py-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold font-display text-neutral-900 dark:text-white mb-2">
-            Chat com sua Mentora 💬
-          </h1>
           <p className="text-neutral-600 dark:text-neutral-300">
             Sua companheira especializada em relacionamentos está aqui para te ouvir e orientar.
           </p>
         </div>
 
         {/* Chat Container */}
-        <div className="card h-[600px] flex flex-col">
+        <div className="card h-[60vh] sm:h-[70vh] min-h-[400px] sm:min-h-[500px] max-h-[800px] flex flex-col">
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message) => (
@@ -132,7 +133,7 @@ Pode me contar o que está acontecendo? Como vocês estão se sentindo ultimamen
                 key={message.id}
                 className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div className={`max-w-[80%] ${
+                <div className={`max-w-[85%] sm:max-w-[80%] ${
                   message.sender === 'user' 
                     ? 'bg-gradient-to-r from-rose-500 to-primary-500 text-white rounded-2xl rounded-br-none'
                     : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-800 dark:text-neutral-200 rounded-2xl rounded-bl-none'
@@ -183,14 +184,19 @@ Pode me contar o que está acontecendo? Como vocês estão se sentindo ultimamen
 
           {/* Quick Suggestions */}
           {messages.length <= 1 && (
-            <div className="p-4 border-t border-neutral-200">
-              <p className="text-sm text-neutral-600 mb-3">💡 Sugestões para começar:</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="p-4 border-t border-neutral-200 dark:border-neutral-700 bg-gradient-to-r from-rose-50/30 to-primary-50/30 dark:from-rose-900/10 dark:to-primary-900/10">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 flex items-center">
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+                Sugestões para começar:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {quickSuggestions.map((suggestion, index) => (
                   <button
                     key={index}
                     onClick={() => handleQuickSuggestion(suggestion)}
-                    className="text-sm bg-neutral-100 hover:bg-rose-50 hover:text-rose-700 px-3 py-2 rounded-full transition-colors"
+                    className="text-sm bg-white dark:bg-neutral-800 hover:bg-rose-50 dark:hover:bg-rose-900/20 hover:text-rose-700 dark:hover:text-rose-300 px-4 py-3 rounded-xl transition-all duration-200 text-left border border-neutral-200 dark:border-neutral-700 hover:border-rose-300 dark:hover:border-rose-600 transform hover:scale-[1.02]"
                   >
                     {suggestion}
                   </button>
@@ -200,25 +206,49 @@ Pode me contar o que está acontecendo? Como vocês estão se sentindo ultimamen
           )}
 
           {/* Input */}
-          <div className="p-4 border-t border-neutral-200">
-            <div className="flex space-x-3">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                placeholder="Digite sua mensagem..."
-                className="flex-1 input"
-                disabled={isTyping}
-              />
+          <div className="p-4 border-t border-neutral-200 dark:border-neutral-700">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex-1 relative">
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
+                  placeholder="Conte-me como você está se sentindo..."
+                  className="w-full px-4 py-3 text-sm border border-neutral-300 dark:border-neutral-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all duration-200 placeholder-neutral-400 dark:placeholder-neutral-500 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 pr-12"
+                  disabled={isTyping}
+                />
+                {isTyping && (
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-rose-500 border-t-transparent"></div>
+                  </div>
+                )}
+              </div>
               <button
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim() || isTyping}
-                className="btn-primary px-6 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 whitespace-nowrap min-w-[120px]"
               >
-                Enviar 💕
+                {isTyping ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                    <span>Enviando...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Enviar</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </>
+                )}
               </button>
             </div>
+            {isTyping && (
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2 text-center">
+                Sua mentora está pensando numa resposta especial para você...
+              </p>
+            )}
           </div>
         </div>
       </div>
