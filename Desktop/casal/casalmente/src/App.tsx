@@ -5,6 +5,9 @@ import { CoupleProvider } from './contexts/CoupleContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { GamificationProvider } from './contexts/GamificationContext';
+import { EmotionalDiaryProvider } from './contexts/EmotionalDiaryContext';
+import { SmartRemindersProvider } from './contexts/SmartRemindersContext';
+import { PersonalizedContentProvider } from './contexts/PersonalizedContentContext';
 
 // Pages
 import Home from './pages/Home';
@@ -21,6 +24,7 @@ import Settings from './pages/Settings';
 import ConquestGuide from './pages/ConquestGuide';
 import ReconquestGuide from './pages/ReconquestGuide';
 import ActionPlans from './pages/ActionPlans';
+import CoupleProfileSetup from './pages/CoupleProfileSetup';
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -70,6 +74,9 @@ function App() {
           <GamificationProvider>
             <CoupleProvider>
               <NotificationProvider>
+                <EmotionalDiaryProvider>
+                  <SmartRemindersProvider>
+                    <PersonalizedContentProvider>
             <Router>
               <Routes>
           {/* Public Routes */}
@@ -137,11 +144,19 @@ function App() {
               <ActionPlans />
             </ProtectedRoute>
           } />
+          <Route path="/perfil-casal" element={
+            <ProtectedRoute>
+              <CoupleProfileSetup />
+            </ProtectedRoute>
+          } />
           
           {/* Redirect any unknown routes */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
+                    </PersonalizedContentProvider>
+                  </SmartRemindersProvider>
+                </EmotionalDiaryProvider>
               </NotificationProvider>
             </CoupleProvider>
           </GamificationProvider>

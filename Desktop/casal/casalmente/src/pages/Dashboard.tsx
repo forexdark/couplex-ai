@@ -4,11 +4,14 @@ import Layout from '../components/Layout';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useGamification } from '../contexts/GamificationContext';
+import { usePersonalizedContent } from '../contexts/PersonalizedContentContext';
+import SmartRemindersWidget from '../components/SmartRemindersWidget';
 
 export default function Dashboard() {
   const { user } = useAuth();
   const { t } = useLanguage();
   const { userProgress, getDailyChallenge, updateStreak } = useGamification();
+  const { coupleProfile, getProfileCompleteness } = usePersonalizedContent();
   const [currentMood, setCurrentMood] = useState('');
   const [currentMoodObj, setCurrentMoodObj] = useState<any>(null);
   const [showMoodSelector, setShowMoodSelector] = useState(false);
@@ -20,6 +23,7 @@ export default function Dashboard() {
   }, []);
 
   const dailyChallenge = getDailyChallenge();
+  const profileCompleteness = getProfileCompleteness();
 
   const moods = [
     { 
@@ -415,6 +419,34 @@ export default function Dashboard() {
               </div>
             </div>
           )}
+        </div>
+
+        {/* Profile Completion Alert */}
+        {profileCompleteness < 100 && (
+          <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl shadow-soft p-6 text-white mb-8">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="text-4xl">👤</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-1">Complete seu Perfil do Casal</h3>
+                  <p className="opacity-90">
+                    Seu perfil está {profileCompleteness}% completo. Complete para receber conteúdo personalizado!
+                  </p>
+                </div>
+              </div>
+              <Link
+                to="/perfil-casal"
+                className="bg-white text-orange-600 px-6 py-3 rounded-xl font-semibold hover:bg-orange-50 transition-colors"
+              >
+                Completar Perfil
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Smart Reminders Widget */}
+        <div className="mb-8">
+          <SmartRemindersWidget />
         </div>
 
         {/* Funcionalidades Adicionais */}
