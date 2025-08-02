@@ -1,5 +1,3 @@
-import Groq from 'groq-sdk';
-
 // Configure your Groq API key here
 const apiKey = import.meta.env.VITE_GROQ_API_KEY || import.meta.env.REACT_APP_GROQ_API_KEY || 'your-groq-api-key-here';
 
@@ -10,11 +8,8 @@ console.log('Available env vars:', {
   react: import.meta.env.REACT_APP_GROQ_API_KEY ? 'exists' : 'missing'
 });
 
-const groq = new Groq({
-  apiKey: apiKey,
-  dangerouslyAllowBrowser: true,
-  baseURL: 'https://api.groq.com/openai/v1' // Explicit base URL
-});
+// Direct fetch approach instead of SDK to avoid URL issues
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 interface ChatMessage {
   role: 'system' | 'user' | 'assistant';
@@ -75,21 +70,38 @@ Comece sempre validando os sentimentos da pessoa antes de dar conselhos.`
         content: userMessage
       });
 
-      console.log('📤 Calling Groq API with:', {
+      console.log('📤 Calling Groq API with fetch directly:', {
+        url: GROQ_API_URL,
         model: 'llama3-8b-8192',
         messageCount: this.conversationHistory.length,
         hasApiKey: !!apiKey && apiKey !== 'your-groq-api-key-here'
       });
 
-      // Call Groq API - using free model
-      const completion = await groq.chat.completions.create({
-        messages: this.conversationHistory,
-        model: 'llama-3.1-8b-instant', // Free model on Groq
-        temperature: 0.7,
-        max_tokens: 400,
-        top_p: 0.9,
+      // Direct fetch call to Groq API
+      const response = await fetch(GROQ_API_URL, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: this.conversationHistory,
+          model: 'llama3-8b-8192',
+          temperature: 0.7,
+          max_tokens: 400,
+          top_p: 0.9,
+        })
       });
 
+      console.log('📥 Groq API Response status:', response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('❌ Groq API Error:', response.status, errorText);
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
+      }
+
+      const completion = await response.json();
       console.log('📥 Groq API Response received:', {
         choices: completion.choices?.length || 0,
         model: completion.model,
@@ -120,7 +132,6 @@ Comece sempre validando os sentimentos da pessoa antes de dar conselhos.`
       console.error('❌ Erro ao chamar Groq API:', error);
       console.error('🔍 Error details:', {
         message: error.message,
-        status: error.status || 'unknown',
         type: error.constructor.name
       });
       
@@ -156,13 +167,28 @@ Comece sempre validando os sentimentos da pessoa antes de dar conselhos.`
   async testConnection(): Promise<boolean> {
     try {
       console.log('🧪 Testing Groq API connection...');
-      const response = await groq.chat.completions.create({
-        messages: [{ role: 'user', content: 'Hi' }],
-        model: 'llama-3.1-8b-instant',
-        max_tokens: 10
+      const response = await fetch(GROQ_API_URL, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [{ role: 'user', content: 'Hi' }],
+          model: 'llama3-8b-8192',
+          max_tokens: 10
+        })
       });
-      console.log('✅ Groq API test successful:', response.choices[0]?.message?.content);
-      return true;
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('✅ Groq API test successful:', result.choices[0]?.message?.content);
+        return true;
+      } else {
+        const errorText = await response.text();
+        console.error('❌ Groq API test failed:', response.status, errorText);
+        return false;
+      }
     } catch (error) {
       console.error('❌ Groq API test failed:', error);
       return false;
