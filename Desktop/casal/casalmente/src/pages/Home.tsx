@@ -356,6 +356,199 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Reviews and Testimonials Section */}
+      <section className="py-20 bg-gradient-to-br from-neutral-50 to-rose-50">
+        <div className="container-app">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-5xl font-bold font-display text-neutral-900 mb-6">
+              +15.000 casais já salvaram seus relacionamentos
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+              Veja como a CoupleX AI transformou a vida de casais reais que estavam prestes a terminar
+            </p>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-rose-600 mb-2">15.347</div>
+              <p className="text-neutral-600 text-sm">Casais Salvos</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary-600 mb-2">4.9★</div>
+              <p className="text-neutral-600 text-sm">Avaliação Média</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-green-600 mb-2">89%</div>
+              <p className="text-neutral-600 text-sm">Taxa de Sucesso</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-purple-600 mb-2">7 dias</div>
+              <p className="text-neutral-600 text-sm">Primeiros Resultados</p>
+            </div>
+          </div>
+
+          {/* Testimonials Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {/* Testimonial 1 */}
+            <div className="card bg-white/80 backdrop-blur-sm border border-rose-200">
+              <div className="flex items-center mb-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=60&h=60&fit=crop&crop=face&auto=format&q=80" 
+                  alt="Marina" 
+                  className="w-12 h-12 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <h4 className="font-semibold text-neutral-900">Marina & João</h4>
+                  <div className="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+              <p className="text-neutral-700 text-sm leading-relaxed mb-4">
+                "Estávamos dormindo em quartos separados há 3 meses. A CoupleX nos ajudou a entender nossas linguagens do amor e hoje somos mais unidos que nunca!"
+              </p>
+              <p className="text-xs text-neutral-500">Casados há 8 anos • São Paulo</p>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="card bg-white/80 backdrop-blur-sm border border-rose-200">
+              <div className="flex items-center mb-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face&auto=format&q=80" 
+                  alt="Carlos" 
+                  className="w-12 h-12 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <h4 className="font-semibold text-neutral-900">Carlos & Ana</h4>
+                  <div className="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+              <p className="text-neutral-700 text-sm leading-relaxed mb-4">
+                "O modo crise salvou nosso casamento literalmente. Tivemos uma discussão terrível e a IA nos mediou de forma incrível. Hoje rimos disso juntos."
+              </p>
+              <p className="text-xs text-neutral-500">Casados há 12 anos • Rio de Janeiro</p>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="card bg-white/80 backdrop-blur-sm border border-rose-200">
+              <div className="flex items-center mb-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face&auto=format&q=80" 
+                  alt="Juliana" 
+                  className="w-12 h-12 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <h4 className="font-semibold text-neutral-900">Juliana & Pedro</h4>
+                  <div className="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+              <p className="text-neutral-700 text-sm leading-relaxed mb-4">
+                "Depois de 15 anos juntos, achávamos que não tinha mais jeito. As dicas diárias e o calendário do casal reacenderam nossa paixão!"
+              </p>
+              <p className="text-xs text-neutral-500">Casados há 15 anos • Belo Horizonte</p>
+            </div>
+
+            {/* Testimonial 4 */}
+            <div className="card bg-white/80 backdrop-blur-sm border border-rose-200">
+              <div className="flex items-center mb-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face&auto=format&q=80" 
+                  alt="Ricardo" 
+                  className="w-12 h-12 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <h4 className="font-semibold text-neutral-900">Ricardo & Camila</h4>
+                  <div className="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+              <p className="text-neutral-700 text-sm leading-relaxed mb-4">
+                "A IA entende nossos problemas melhor que qualquer terapeuta que já procuramos. É como ter uma amiga sábia disponível 24h."
+              </p>
+              <p className="text-xs text-neutral-500">Namorando há 4 anos • Salvador</p>
+            </div>
+
+            {/* Testimonial 5 */}
+            <div className="card bg-white/80 backdrop-blur-sm border border-rose-200">
+              <div className="flex items-center mb-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&h=60&fit=crop&crop=face&auto=format&q=80" 
+                  alt="Patricia" 
+                  className="w-12 h-12 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <h4 className="font-semibold text-neutral-900">Patricia & Luis</h4>
+                  <div className="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+              <p className="text-neutral-700 text-sm leading-relaxed mb-4">
+                "O check-in diário nos fez perceber padrões que nem imaginávamos. Hoje nos comunicamos de forma muito mais saudável."
+              </p>
+              <p className="text-xs text-neutral-500">Casados há 6 anos • Curitiba</p>
+            </div>
+
+            {/* Testimonial 6 */}
+            <div className="card bg-white/80 backdrop-blur-sm border border-rose-200">
+              <div className="flex items-center mb-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face&auto=format&q=80" 
+                  alt="Bruno" 
+                  className="w-12 h-12 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <h4 className="font-semibold text-neutral-900">Bruno & Leticia</h4>
+                  <div className="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+              <p className="text-neutral-700 text-sm leading-relaxed mb-4">
+                "Éramos como estranhos morando na mesma casa. Hoje planejamos surpresas um para o outro e nossa intimidade voltou completamente!"
+              </p>
+              <p className="text-xs text-neutral-500">Casados há 10 anos • Recife</p>
+            </div>
+          </div>
+
+          {/* Success Story Highlight */}
+          <div className="card bg-gradient-to-r from-rose-500 to-primary-500 text-white text-center max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-shrink-0">
+                <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
+                  <span className="text-4xl">💕</span>
+                </div>
+              </div>
+              <div className="flex-1 text-left">
+                <blockquote className="text-xl font-medium mb-4">
+                  "Em apenas 2 semanas, conseguimos nos reconectar de uma forma que não acontecia há anos. 
+                  A CoupleX AI não apenas salvou nosso casamento - ela nos fez lembrar porque nos apaixonamos."
+                </blockquote>
+                <cite className="text-sm opacity-90">
+                  — Marcos & Fernanda, casados há 18 anos
+                </cite>
+              </div>
+            </div>
+          </div>
+
+          {/* Trust Badges */}
+          <div className="text-center mt-12">
+            <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-neutral-600">
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">🔒</span>
+                <span>Dados 100% protegidos</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-blue-500">👥</span>
+                <span>+15.000 casais atendidos</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-purple-500">🏆</span>
+                <span>89% de taxa de sucesso</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-500">⭐</span>
+                <span>4.9/5 satisfação</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="precos" className="py-20 bg-white">
         <div className="container-app">

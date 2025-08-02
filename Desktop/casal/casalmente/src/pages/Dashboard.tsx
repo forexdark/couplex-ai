@@ -177,10 +177,42 @@ export default function Dashboard() {
         </div>
 
 
+        {/* Menu de Acesso Rápido */}
+        <div className="card mb-8">
+          <h2 className="text-xl font-bold text-neutral-900 mb-4 flex items-center">
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            {t('dashboard.quickAccess')}
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {[
+              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>, title: t('menu.diary'), link: '/diario-emocional', color: 'purple' },
+              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v16a2 2 0 002 2z" /></svg>, title: t('menu.calendar'), link: '/calendario-casal', color: 'green' },
+              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>, title: t('menu.aiChat'), link: '/chat', color: 'blue' },
+              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>, title: t('menu.goals'), link: '/metas-relacionamento', color: 'orange' },
+              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>, title: t('menu.surprises'), link: '/surpresas-personalizadas', color: 'yellow' }
+            ].map((item, index) => (
+              <Link
+                key={index}
+                to={item.link}
+                className={`group flex flex-col items-center p-3 rounded-xl border-2 border-transparent hover:border-${item.color}-200 bg-gradient-to-br from-${item.color}-50 to-${item.color}-100 hover:from-${item.color}-100 hover:to-${item.color}-200 transition-all duration-300 transform hover:-translate-y-1`}
+              >
+                <div className={`w-10 h-10 bg-gradient-to-r from-${item.color}-400 to-${item.color}-500 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform shadow-lg`}>
+                  <div className="text-white">{item.icon}</div>
+                </div>
+                <span className={`text-xs font-semibold text-${item.color}-700 text-center leading-tight`}>
+                  {item.title}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
         {/* Check-in Diário e Dica do Dia lado a lado */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Check-in Diário */}
-          <div className="card">
+          <div className="card h-full">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -260,11 +292,14 @@ export default function Dashboard() {
                 )}
               </div>
             )}
+            
+            {/* Spacer para manter altura uniforme */}
+            <div className="flex-1"></div>
           </div>
 
           {/* Dica do Dia */}
           {dailyTip && (
-            <div className="card bg-gradient-to-r from-rose-50 to-primary-50 border-2 border-rose-200 relative">
+            <div className="card bg-gradient-to-r from-rose-50 to-primary-50 border-2 border-rose-200 relative h-full flex flex-col">
               <button 
                 onClick={() => {
                   // Generate new tip by forcing re-render
@@ -278,18 +313,18 @@ export default function Dashboard() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
               </button>
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 flex-1">
                 <div className="w-12 h-12 bg-gradient-to-r from-rose-500 to-primary-500 rounded-xl flex items-center justify-center flex-shrink-0">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 flex flex-col">
                   <h2 className="text-xl font-bold text-neutral-900 mb-2">{t('dashboard.dailyTipTitle')}</h2>
-                  <p className="text-neutral-700 mb-4 leading-relaxed">
+                  <p className="text-neutral-700 mb-4 leading-relaxed flex-1">
                     {dailyTips[Math.floor(Math.random() * dailyTips.length)]}
                   </p>
-                  <button className="btn-primary text-sm w-full flex items-center justify-center">
+                  <button className="btn-primary text-sm w-full flex items-center justify-center mt-auto">
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
@@ -301,35 +336,6 @@ export default function Dashboard() {
           )}
         </div>
 
-        {/* Profile Completion Alert */}
-        {profileCompleteness < 100 && (
-          <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl shadow-soft p-6 text-white mb-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-1">{t('dashboard.completeProfile')}</h3>
-                  <p className="opacity-90">
-                    {t('dashboard.profileProgress').replace('{progress}', profileCompleteness.toString())}
-                  </p>
-                </div>
-              </div>
-              <Link
-                to="/perfil-casal"
-                className="bg-white text-orange-600 px-6 py-3 rounded-xl font-semibold hover:bg-orange-50 transition-colors flex items-center"
-              >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                {t('dashboard.completeProfileBtn')}
-              </Link>
-            </div>
-          </div>
-        )}
 
         {/* Smart Reminders Widget */}
         <div className="mb-8">
@@ -344,7 +350,7 @@ export default function Dashboard() {
             </svg>
             {t('dashboard.specialFeatures')}
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>,
@@ -355,20 +361,28 @@ export default function Dashboard() {
                 badge: 'Popular'
               },
               {
-                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>,
-                title: 'Chat com Mentora IA',
-                description: 'Conselhos e orientações personalizadas 24/7',
-                color: 'from-blue-500 to-cyan-500',
-                link: '/chat',
-                badge: 'Sempre Disponível'
+                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>,
+                title: 'Modo Crise',
+                description: 'Suporte imediato para momentos difíceis',
+                color: 'from-red-500 to-red-600',
+                link: '/modo-crise',
+                badge: 'Urgente'
               },
               {
-                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>,
-                title: 'Metas do Relacionamento',
-                description: 'Definam e acompanhem objetivos como casal',
-                color: 'from-orange-500 to-red-500',
-                link: '/metas-relacionamento',
-                badge: 'Progresso'
+                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>,
+                title: profileCompleteness < 100 ? 'Complete seu Perfil' : 'Perfil do Casal',
+                description: profileCompleteness < 100 ? `${profileCompleteness}% completo. Personalize sua experiência!` : 'Veja e edite o perfil do seu relacionamento',
+                color: profileCompleteness < 100 ? 'from-amber-500 to-orange-500' : 'from-green-500 to-emerald-500',
+                link: '/perfil-casal',
+                badge: profileCompleteness < 100 ? `${profileCompleteness}%` : 'Completo'
+              },
+              {
+                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>,
+                title: 'Planos de Ação',
+                description: 'Estratégias personalizadas para seu relacionamento',
+                color: 'from-indigo-500 to-purple-500',
+                link: '/planos-acao',
+                badge: 'Personalizado'
               }
             ].map((feature, index) => (
               <Link 
@@ -377,20 +391,20 @@ export default function Dashboard() {
                 className="group relative card-hover bg-white rounded-2xl border-2 border-neutral-200 hover:border-rose-300 p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-glow"
               >
                 <div className="absolute top-4 right-4">
-                  <span className="bg-rose-100 text-rose-600 text-xs font-semibold px-2 py-1 rounded-full">
+                  <span className={`${feature.color.includes('red') ? 'bg-red-100 text-red-600' : feature.color.includes('amber') ? 'bg-amber-100 text-amber-600' : 'bg-rose-100 text-rose-600'} text-xs font-semibold px-2 py-1 rounded-full`}>
                     {feature.badge}
                   </span>
                 </div>
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg mb-4 group-hover:scale-110 transition-transform`}>
+                <div className={`w-14 h-14 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg mb-4 group-hover:scale-110 transition-transform`}>
                   <div className="text-white">{feature.icon}</div>
                 </div>
-                <h3 className="text-lg font-bold font-display text-neutral-900 mb-2 group-hover:text-rose-700 transition-colors">
+                <h3 className="text-base font-bold font-display text-neutral-900 mb-2 group-hover:text-rose-700 transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-neutral-600 text-sm leading-relaxed">
+                <p className="text-neutral-600 text-xs leading-relaxed">
                   {feature.description}
                 </p>
-                <div className="mt-4 flex items-center text-rose-600 font-semibold text-sm">
+                <div className="mt-4 flex items-center text-rose-600 font-semibold text-xs">
                   <span>Acessar</span>
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
