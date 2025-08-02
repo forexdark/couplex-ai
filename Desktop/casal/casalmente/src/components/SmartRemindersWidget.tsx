@@ -65,13 +65,13 @@ export default function SmartRemindersWidget() {
 
   if (activeReminders.length === 0 && !isAnalyzing) {
     return (
-      <div className="bg-white rounded-2xl shadow-soft p-6">
+      <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-soft p-4 border border-neutral-100 dark:border-neutral-700">
         <div className="text-center">
-          <div className="text-4xl mb-3">🧠</div>
-          <h3 className="font-semibold text-neutral-800 mb-2">
+          <div className="text-2xl mb-2">🧠</div>
+          <h3 className="font-medium text-neutral-800 dark:text-neutral-200 mb-1 text-sm">
             IA Monitorando seu Relacionamento
           </h3>
-          <p className="text-sm text-neutral-600">
+          <p className="text-xs text-neutral-600 dark:text-neutral-400">
             Nossa IA está analisando seus padrões para oferecer lembretes personalizados
           </p>
         </div>
@@ -80,158 +80,99 @@ export default function SmartRemindersWidget() {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-soft p-6">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center space-x-3">
-          <div className="text-2xl">🧠</div>
+    <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-soft p-4 border border-neutral-100 dark:border-neutral-700">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center space-x-2">
+          <div className="text-xl">🧠</div>
           <div>
-            <h3 className="font-bold text-neutral-800">Lembretes Inteligentes</h3>
-            <p className="text-sm text-neutral-600">Baseados em IA contextual</p>
+            <h3 className="font-semibold text-neutral-800 dark:text-neutral-200 text-sm">Lembretes Inteligentes</h3>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">IA contextual</p>
           </div>
         </div>
         {isAnalyzing && (
-          <div className="flex items-center space-x-2 text-primary-600">
-            <div className="animate-spin w-4 h-4 border-2 border-primary-600 border-t-transparent rounded-full"></div>
-            <span className="text-sm">Analisando...</span>
+          <div className="flex items-center space-x-1 text-primary-600 dark:text-primary-400">
+            <div className="animate-spin w-3 h-3 border-2 border-primary-600 dark:border-primary-400 border-t-transparent rounded-full"></div>
+            <span className="text-xs">Analisando...</span>
           </div>
         )}
       </div>
 
-      <div className="space-y-4">
-        {activeReminders.slice(0, 5).map((reminder) => (
+      <div className="space-y-3">
+        {activeReminders.slice(0, 3).map((reminder) => (
           <div
             key={reminder.id}
-            className={`border-l-4 rounded-lg p-4 transition-all ${getPriorityColor(reminder.priority)}`}
+            className={`border-l-3 rounded-lg p-3 transition-all bg-neutral-50 dark:bg-neutral-700/50 border-l-primary-500`}
           >
             <div className="flex items-start justify-between">
-              <div className="flex items-start space-x-3 flex-1">
-                <div className="text-xl flex-shrink-0">
+              <div className="flex items-start space-x-2 flex-1">
+                <div className="text-sm flex-shrink-0">
                   {getTypeIcon(reminder.type)}
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-1">
-                    <h4 className="font-semibold text-neutral-800">
+                    <h4 className="font-medium text-neutral-800 dark:text-neutral-200 text-sm">
                       {reminder.title}
                     </h4>
                     <span className="text-xs">
                       {getPriorityIcon(reminder.priority)}
                     </span>
                     {reminder.aiGenerated && (
-                      <span className="px-2 py-0.5 bg-purple-100 text-purple-600 rounded-full text-xs font-medium">
+                      <span className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 rounded-full text-xs font-medium">
                         IA
                       </span>
                     )}
                   </div>
                   
-                  <p className="text-neutral-700 text-sm mb-2">
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs mb-2 line-clamp-2">
                     {reminder.message}
                   </p>
 
-                  {expandedReminder === reminder.id && (
-                    <div className="mt-3 space-y-3">
-                      <div className="bg-white/80 rounded-lg p-3">
-                        <div className="text-xs text-neutral-500 mb-1">Ação Sugerida:</div>
-                        <div className="text-sm text-neutral-700">
-                          {reminder.suggestedAction}
-                        </div>
-                      </div>
-                      
-                      <div className="bg-white/80 rounded-lg p-3">
-                        <div className="text-xs text-neutral-500 mb-1">Por que agora?</div>
-                        <div className="text-sm text-neutral-700">
-                          {reminder.contextReason}
-                        </div>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex flex-wrap gap-2">
-                        <button
-                          onClick={() => handleComplete(reminder.id)}
-                          className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg text-xs font-medium transition-colors"
-                        >
-                          ✅ Concluído
-                        </button>
-                        
-                        <button
-                          onClick={() => handleSnooze(reminder.id, 1)}
-                          className="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-xs font-medium transition-colors"
-                        >
-                          ⏰ Lembrar em 1h
-                        </button>
-                        
-                        <button
-                          onClick={() => handleSnooze(reminder.id, 24)}
-                          className="px-3 py-1 bg-purple-500 hover:bg-purple-600 text-white rounded-lg text-xs font-medium transition-colors"
-                        >
-                          📅 Amanhã
-                        </button>
-                        
-                        <button
-                          onClick={() => handleDismiss(reminder.id)}
-                          className="px-3 py-1 bg-neutral-400 hover:bg-neutral-500 text-white rounded-lg text-xs font-medium transition-colors"
-                        >
-                          ❌ Dispensar
-                        </button>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
-              
-              <button
-                onClick={() => setExpandedReminder(
-                  expandedReminder === reminder.id ? null : reminder.id
-                )}
-                className="text-neutral-400 hover:text-neutral-600 transition-colors ml-2"
-              >
-                {expandedReminder === reminder.id ? '▲' : '▼'}
-              </button>
             </div>
 
-            {/* Quick Actions for collapsed state */}
-            {expandedReminder !== reminder.id && (
-              <div className="flex items-center justify-between mt-3">
-                <div className="text-xs text-neutral-500">
-                  {reminder.scheduledFor.toLocaleTimeString('pt-BR', { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                  })}
-                </div>
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => handleComplete(reminder.id)}
-                    className="text-green-600 hover:text-green-700 transition-colors"
-                    title="Marcar como concluído"
-                  >
-                    ✅
-                  </button>
-                  <button
-                    onClick={() => setExpandedReminder(reminder.id)}
-                    className="text-blue-600 hover:text-blue-700 transition-colors"
-                    title="Ver detalhes"
-                  >
-                    👁️
-                  </button>
-                </div>
+            {/* Quick Actions */}
+            <div className="flex items-center justify-between mt-2">
+              <div className="text-xs text-neutral-500 dark:text-neutral-400">
+                {reminder.scheduledFor.toLocaleTimeString('pt-BR', { 
+                  hour: '2-digit', 
+                  minute: '2-digit' 
+                })}
               </div>
-            )}
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => handleComplete(reminder.id)}
+                  className="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors text-sm"
+                  title="Marcar como concluído"
+                >
+                  ✅
+                </button>
+                <button
+                  onClick={() => handleSnooze(reminder.id, 1)}
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-sm"
+                  title="Lembrar em 1h"
+                >
+                  ⏰
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
 
-      {activeReminders.length > 5 && (
-        <div className="mt-4 text-center">
-          <p className="text-sm text-neutral-600">
-            +{activeReminders.length - 5} lembretes adicionais
+      {activeReminders.length > 3 && (
+        <div className="mt-3 text-center">
+          <p className="text-xs text-neutral-600 dark:text-neutral-400">
+            +{activeReminders.length - 3} lembretes adicionais
           </p>
         </div>
       )}
 
       {activeReminders.length === 0 && isAnalyzing && (
-        <div className="text-center py-6">
-          <div className="animate-pulse text-2xl mb-2">🤖</div>
-          <p className="text-sm text-neutral-600">
-            Analisando seus padrões para gerar lembretes personalizados...
+        <div className="text-center py-4">
+          <div className="animate-pulse text-lg mb-1">🤖</div>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400">
+            Analisando seus padrões...
           </p>
         </div>
       )}
