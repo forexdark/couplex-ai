@@ -17,7 +17,7 @@ export default function Home() {
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold font-display text-neutral-900 mb-6 leading-tight">
                 A conexão <span className="bg-gradient-to-r from-rose-500 to-primary-500 bg-clip-text text-transparent">esfriou</span>?
                 <br />
-                <span className="bg-gradient-to-r from-primary-500 to-rose-500 bg-clip-text text-transparent">CoupleX AI</span> te ajuda a reacender
+                <span className="bg-gradient-to-r from-primary-500 to-rose-500 bg-clip-text text-transparent">CoupleX</span> te ajuda a reacender
               </h1>
               
               <p className="text-xl sm:text-2xl text-neutral-600 mb-10 max-w-3xl mx-auto leading-relaxed">
@@ -364,7 +364,7 @@ export default function Home() {
               +15.000 casais já salvaram seus relacionamentos
             </h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              Veja como a CoupleX AI transformou a vida de casais reais que estavam prestes a terminar
+              Veja como a CoupleX transformou a vida de casais reais que estavam prestes a terminar
             </p>
           </div>
 
@@ -516,7 +516,7 @@ export default function Home() {
               <div className="flex-1 text-left">
                 <blockquote className="text-xl font-medium mb-4">
                   "Em apenas 2 semanas, conseguimos nos reconectar de uma forma que não acontecia há anos. 
-                  A CoupleX AI não apenas salvou nosso casamento - ela nos fez lembrar porque nos apaixonamos."
+                  A CoupleX não apenas salvou nosso casamento - ela nos fez lembrar porque nos apaixonamos."
                 </blockquote>
                 <cite className="text-sm opacity-90">
                   — Marcos & Fernanda, casados há 18 anos
@@ -796,7 +796,7 @@ export default function Home() {
               <div className="w-10 h-10 bg-gradient-to-r from-rose-500 to-primary-500 rounded-xl flex items-center justify-center shadow-soft">
                 <span className="text-white text-xl">💕</span>
               </div>
-              <span className="text-2xl font-bold font-display">CoupleX AI</span>
+              <span className="text-2xl font-bold font-display">CoupleX</span>
             </div>
             <p className="text-neutral-400 mb-6">
               Salvando relacionamentos com inteligência artificial especializada
@@ -808,7 +808,7 @@ export default function Home() {
               <a href="#" className="hover:text-white transition-colors">Suporte</a>
             </div>
             <p className="text-xs text-neutral-500">
-              © 2024 CoupleX AI. Todos os direitos reservados.
+              © 2024 CoupleX. Todos os direitos reservados.
             </p>
           </div>
         </div>

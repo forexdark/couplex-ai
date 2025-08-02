@@ -96,7 +96,7 @@ export default function Auth() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold font-display bg-gradient-to-r from-rose-600 to-primary-600 bg-clip-text text-transparent">
-                  CoupleX AI
+                  CoupleX
                 </h1>
                 <p className="text-xs text-neutral-500">Terapeuta Digital</p>
               </div>

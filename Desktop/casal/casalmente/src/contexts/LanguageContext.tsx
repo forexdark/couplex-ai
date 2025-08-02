@@ -14,7 +14,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations = {
   pt: {
     // Header
-    'header.title': 'CoupleX AI',
+    'header.title': 'CoupleX',
     'header.subtitle': 'Mentora dos Relacionamentos',
     'header.features': 'Funcionalidades',
     'header.pricing': 'Preços',
@@ -105,7 +105,7 @@ const translations = {
     'home.heroTagline': 'Sua Mentora dos Relacionamentos',
     'home.heroTitle1': 'A conexão',
     'home.heroTitle2': 'esfriou',
-    'home.heroTitle3': 'CoupleX AI',
+    'home.heroTitle3': 'CoupleX',
     'home.heroTitle4': 'te ajuda a reacender',
     'home.heroSubtitle': 'Reacenda a paixão, reconecte corações e fortaleça seu relacionamento com nossa companheira especializada em salvar famílias.',
     'home.ctaPrimary': 'Começar Agora - Grátis',
@@ -116,7 +116,7 @@ const translations = {
     'home.problemsTitle': 'Reconhece esses sinais no seu relacionamento?',
     'home.problemsSubtitle': 'Se você se identifica com 2 ou mais situações abaixo, seu relacionamento precisa de atenção urgente.',
     'home.reviewsTitle': '+15.000 casais já salvaram seus relacionamentos',
-    'home.reviewsSubtitle': 'Veja como a CoupleX AI transformou a vida de casais reais que estavam prestes a terminar',
+    'home.reviewsSubtitle': 'Veja como a CoupleX transformou a vida de casais reais que estavam prestes a terminar',
     'home.statsLabel1': 'Casais Salvos',
     'home.statsLabel2': 'Avaliação Média',
     'home.statsLabel3': 'Taxa de Sucesso',
@@ -144,7 +144,7 @@ const translations = {
   
   en: {
     // Header
-    'header.title': 'CoupleX AI',
+    'header.title': 'CoupleX',
     'header.subtitle': 'Relationship Mentor',
     'header.features': 'Features',
     'header.pricing': 'Pricing',
@@ -235,7 +235,7 @@ const translations = {
     'home.heroTagline': 'Your Relationship Mentor',
     'home.heroTitle1': 'The connection',
     'home.heroTitle2': 'cooled down',
-    'home.heroTitle3': 'CoupleX AI',
+    'home.heroTitle3': 'CoupleX',
     'home.heroTitle4': 'helps you reignite it',
     'home.heroSubtitle': 'Reignite passion, reconnect hearts and strengthen your relationship with our companion specialized in saving families.',
     'home.ctaPrimary': 'Start Now - Free',
@@ -246,7 +246,7 @@ const translations = {
     'home.problemsTitle': 'Do you recognize these signs in your relationship?',
     'home.problemsSubtitle': 'If you identify with 2 or more situations below, your relationship needs urgent attention.',
     'home.reviewsTitle': '+15,000 couples have already saved their relationships',
-    'home.reviewsSubtitle': 'See how CoupleX AI transformed the lives of real couples who were about to break up',
+    'home.reviewsSubtitle': 'See how CoupleX transformed the lives of real couples who were about to break up',
     'home.statsLabel1': 'Couples Saved',
     'home.statsLabel2': 'Average Rating',
     'home.statsLabel3': 'Success Rate',
@@ -274,7 +274,7 @@ const translations = {
   
   es: {
     // Header
-    'header.title': 'CoupleX AI',
+    'header.title': 'CoupleX',
     'header.subtitle': 'Mentora de Relaciones',
     'header.features': 'Características',
     'header.pricing': 'Precios',
@@ -365,7 +365,7 @@ const translations = {
     'home.heroTagline': 'Tu Mentora de Relaciones',
     'home.heroTitle1': 'La conexión',
     'home.heroTitle2': 'se enfrió',
-    'home.heroTitle3': 'CoupleX AI',
+    'home.heroTitle3': 'CoupleX',
     'home.heroTitle4': 'te ayuda a reavivarla',
     'home.heroSubtitle': 'Reavivar la pasión, reconectar corazones y fortalecer tu relación con nuestra compañera especializada en salvar familias.',
     'home.ctaPrimary': 'Comenzar Ahora - Gratis',
@@ -376,7 +376,7 @@ const translations = {
     'home.problemsTitle': '¿Reconoces estas señales en tu relación?',
     'home.problemsSubtitle': 'Si te identificas con 2 o más situaciones a continuación, tu relación necesita atención urgente.',
     'home.reviewsTitle': '+15.000 parejas ya han salvado sus relaciones',
-    'home.reviewsSubtitle': 'Ve cómo CoupleX AI transformó las vidas de parejas reales que estaban a punto de terminar',
+    'home.reviewsSubtitle': 'Ve cómo CoupleX transformó las vidas de parejas reales que estaban a punto de terminar',
     'home.statsLabel1': 'Parejas Salvadas',
     'home.statsLabel2': 'Calificación Promedio',
     'home.statsLabel3': 'Tasa de Éxito',

@@ -41,7 +41,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
         if (isConnected) {
           addNotification({
             type: 'system',
-            title: 'Bem-vindo ao CoupleX AI!',
+            title: 'Bem-vindo ao CoupleX!',
             message: `Você e ${partner?.displayName} agora estão conectados! Explorem as funcionalidades juntos.`,
             fromPartner: false
           });

@@ -179,31 +179,67 @@ export default function Dashboard() {
 
         {/* Menu de Acesso Rápido */}
         <div className="card mb-8">
-          <h2 className="text-xl font-bold text-neutral-900 mb-4 flex items-center">
+          <h2 className="text-xl font-bold text-neutral-900 mb-6 flex items-center">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
             {t('dashboard.quickAccess')}
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>, title: t('menu.diary'), link: '/diario-emocional', color: 'purple' },
-              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v16a2 2 0 002 2z" /></svg>, title: t('menu.calendar'), link: '/calendario-casal', color: 'green' },
-              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>, title: t('menu.aiChat'), link: '/chat', color: 'blue' },
-              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>, title: t('menu.goals'), link: '/metas-relacionamento', color: 'orange' },
-              { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>, title: t('menu.surprises'), link: '/surpresas-personalizadas', color: 'yellow' }
+              { 
+                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>, 
+                title: t('menu.diary'), 
+                link: '/diario-emocional', 
+                color: 'purple',
+                gradient: 'from-purple-500 to-violet-600',
+                bgGradient: 'from-purple-50 to-violet-50',
+                hoverBg: 'hover:from-purple-100 hover:to-violet-100'
+              },
+              { 
+                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v16a2 2 0 002 2z" /></svg>, 
+                title: t('menu.calendar'), 
+                link: '/calendario-casal', 
+                color: 'green',
+                gradient: 'from-green-500 to-emerald-600',
+                bgGradient: 'from-green-50 to-emerald-50',
+                hoverBg: 'hover:from-green-100 hover:to-emerald-100'
+              },
+              { 
+                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>, 
+                title: t('menu.goals'), 
+                link: '/metas-relacionamento', 
+                color: 'orange',
+                gradient: 'from-orange-500 to-red-500',
+                bgGradient: 'from-orange-50 to-red-50',
+                hoverBg: 'hover:from-orange-100 hover:to-red-100'
+              },
+              { 
+                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>, 
+                title: t('menu.surprises'), 
+                link: '/surpresas-personalizadas', 
+                color: 'pink',
+                gradient: 'from-pink-500 to-rose-500',
+                bgGradient: 'from-pink-50 to-rose-50',
+                hoverBg: 'hover:from-pink-100 hover:to-rose-100'
+              }
             ].map((item, index) => (
               <Link
                 key={index}
                 to={item.link}
-                className={`group flex flex-col items-center p-3 rounded-xl border-2 border-transparent hover:border-${item.color}-200 bg-gradient-to-br from-${item.color}-50 to-${item.color}-100 hover:from-${item.color}-100 hover:to-${item.color}-200 transition-all duration-300 transform hover:-translate-y-1`}
+                className={`group relative overflow-hidden rounded-2xl border-2 border-transparent hover:border-${item.color}-300 bg-gradient-to-br ${item.bgGradient} ${item.hoverBg} transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl p-6`}
               >
-                <div className={`w-10 h-10 bg-gradient-to-r from-${item.color}-400 to-${item.color}-500 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform shadow-lg`}>
-                  <div className="text-white">{item.icon}</div>
+                <div className="text-center">
+                  <div className={`w-16 h-16 bg-gradient-to-r ${item.gradient} rounded-2xl flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform shadow-lg group-hover:shadow-xl`}>
+                    <div className="text-white">{item.icon}</div>
+                  </div>
+                  <span className={`text-sm font-bold text-${item.color}-700 block leading-tight`}>
+                    {item.title}
+                  </span>
                 </div>
-                <span className={`text-xs font-semibold text-${item.color}-700 text-center leading-tight`}>
-                  {item.title}
-                </span>
+                
+                {/* Efeito de brilho no hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </Link>
             ))}
           </div>
@@ -369,12 +405,12 @@ export default function Dashboard() {
                 badge: 'Urgente'
               },
               {
-                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>,
-                title: profileCompleteness < 100 ? 'Complete seu Perfil' : 'Perfil do Casal',
-                description: profileCompleteness < 100 ? `${profileCompleteness}% completo. Personalize sua experiência!` : 'Veja e edite o perfil do seu relacionamento',
-                color: profileCompleteness < 100 ? 'from-amber-500 to-orange-500' : 'from-green-500 to-emerald-500',
-                link: '/perfil-casal',
-                badge: profileCompleteness < 100 ? `${profileCompleteness}%` : 'Completo'
+                icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>,
+                title: 'Falar com Mentora',
+                description: 'Conselhos e orientações personalizadas 24/7',
+                color: 'from-blue-500 to-cyan-500',
+                link: '/chat',
+                badge: 'Sempre Disponível'
               },
               {
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>,

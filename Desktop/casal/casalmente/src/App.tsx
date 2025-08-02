@@ -37,7 +37,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
           <div className="w-16 h-16 bg-gradient-to-r from-rose-500 to-primary-500 rounded-2xl flex items-center justify-center shadow-soft mb-4 mx-auto animate-pulse">
             <span className="text-white text-2xl">💕</span>
           </div>
-          <p className="text-neutral-600 font-medium">Carregando CoupleX AI...</p>
+          <p className="text-neutral-600 font-medium">Carregando CoupleX...</p>
         </div>
       </div>
     );
@@ -57,7 +57,7 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
           <div className="w-16 h-16 bg-gradient-to-r from-rose-500 to-primary-500 rounded-2xl flex items-center justify-center shadow-soft mb-4 mx-auto animate-pulse">
             <span className="text-white text-2xl">💕</span>
           </div>
-          <p className="text-neutral-600 font-medium">Carregando CoupleX AI...</p>
+          <p className="text-neutral-600 font-medium">Carregando CoupleX...</p>
         </div>
       </div>
     );

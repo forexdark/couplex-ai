@@ -52,7 +52,7 @@ const availableAchievements: Achievement[] = [
   {
     id: 'first_login',
     title: 'Primeiro Passo',
-    description: 'Fez seu primeiro login no CoupleX AI',
+    description: 'Fez seu primeiro login no CoupleX',
     icon: '🎯',
     points: 50,
     category: 'milestone'

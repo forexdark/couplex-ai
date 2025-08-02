@@ -50,7 +50,7 @@ export default function Settings() {
             Configurações ⚙️
           </h1>
           <p className="text-neutral-600">
-            Personalize sua experiência no CoupleX AI e gerencie sua conta.
+            Personalize sua experiência no CoupleX e gerencie sua conta.
           </p>
         </div>
 
@@ -118,7 +118,7 @@ export default function Settings() {
                 Convidar Parceiro(a)
               </h2>
               <p className="text-neutral-700 mb-6">
-                Convide seu parceiro para usar o CoupleX AI juntos e compartilhar a jornada de reconexão.
+                Convide seu parceiro para usar o CoupleX juntos e compartilhar a jornada de reconexão.
               </p>
               
               <div className="bg-white/70 rounded-xl p-4 mb-6">
@@ -386,7 +386,7 @@ export default function Settings() {
                   <h3 className="font-semibold text-purple-800 mb-2">Preview do convite:</h3>
                   <div className="bg-white rounded-lg p-4 border-2 border-purple-200">
                     <p className="text-sm text-neutral-700 mb-3">
-                      <strong>{user?.displayName}</strong> convidou você para usar o CoupleX AI juntos!
+                      <strong>{user?.displayName}</strong> convidou você para usar o CoupleX juntos!
                     </p>
                     {inviteMessage && (
                       <p className="text-sm text-neutral-600 italic mb-3">"{inviteMessage}"</p>

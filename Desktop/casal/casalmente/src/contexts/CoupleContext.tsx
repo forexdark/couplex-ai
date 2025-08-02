@@ -68,7 +68,7 @@ export function CoupleProvider({ children }: { children: ReactNode }) {
       from: user.displayName || user.email,
       fromUid: user.uid,
       to: email,
-      message: message || `${user.displayName} convidou você para usar o CoupleX AI juntos!`,
+      message: message || `${user.displayName} convidou você para usar o CoupleX juntos!`,
       inviteCode: code,
       timestamp: new Date().toISOString()
     };
