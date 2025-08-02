@@ -134,7 +134,7 @@ export default function Dashboard() {
               </svg>
             </div>
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">{t('dashboard.todayInfo')}</h2">
+              <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">{t('dashboard.todayInfo')}</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="bg-white/70 dark:bg-neutral-800/70 rounded-lg p-4">
                   <p className="text-neutral-700 font-semibold mb-2 flex items-center">
