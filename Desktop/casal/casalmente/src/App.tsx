@@ -8,6 +8,7 @@ import { GamificationProvider } from './contexts/GamificationContext';
 import { EmotionalDiaryProvider } from './contexts/EmotionalDiaryContext';
 import { SmartRemindersProvider } from './contexts/SmartRemindersContext';
 import { PersonalizedContentProvider } from './contexts/PersonalizedContentContext';
+import { SubscriptionProvider } from './contexts/SubscriptionContext';
 
 // Pages
 import Home from './pages/Home';
@@ -25,6 +26,8 @@ import ConquestGuide from './pages/ConquestGuide';
 import ReconquestGuide from './pages/ReconquestGuide';
 import ActionPlans from './pages/ActionPlans';
 import CoupleProfileSetup from './pages/CoupleProfileSetup';
+import Plans from './pages/Plans';
+import PaymentSuccess from './pages/PaymentSuccess';
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -77,6 +80,7 @@ function App() {
                 <EmotionalDiaryProvider>
                   <SmartRemindersProvider>
                     <PersonalizedContentProvider>
+                      <SubscriptionProvider>
             <Router>
               <Routes>
           {/* Public Routes */}
@@ -149,11 +153,22 @@ function App() {
               <CoupleProfileSetup />
             </ProtectedRoute>
           } />
+          <Route path="/planos" element={
+            <ProtectedRoute>
+              <Plans />
+            </ProtectedRoute>
+          } />
+          <Route path="/payment-success" element={
+            <ProtectedRoute>
+              <PaymentSuccess />
+            </ProtectedRoute>
+          } />
           
           {/* Redirect any unknown routes */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
+                      </SubscriptionProvider>
                     </PersonalizedContentProvider>
                   </SmartRemindersProvider>
                 </EmotionalDiaryProvider>

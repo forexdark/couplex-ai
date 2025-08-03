@@ -5,6 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useGamification } from '../contexts/GamificationContext';
 import { usePersonalizedContent } from '../contexts/PersonalizedContentContext';
+import { useSubscription, FeatureGuard } from '../contexts/SubscriptionContext';
 import SmartRemindersWidget from '../components/SmartRemindersWidget';
 
 export default function Dashboard() {
@@ -195,7 +196,8 @@ export default function Dashboard() {
                 color: 'purple',
                 gradient: 'from-purple-500 to-violet-600',
                 bgGradient: 'from-purple-50 to-violet-50',
-                hoverBg: 'hover:from-purple-100 hover:to-violet-100'
+                hoverBg: 'hover:from-purple-100 hover:to-violet-100',
+                feature: 'emotionalDiary' as const
               },
               { 
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v16a2 2 0 002 2z" /></svg>, 
@@ -204,7 +206,8 @@ export default function Dashboard() {
                 color: 'green',
                 gradient: 'from-green-500 to-emerald-600',
                 bgGradient: 'from-green-50 to-emerald-50',
-                hoverBg: 'hover:from-green-100 hover:to-emerald-100'
+                hoverBg: 'hover:from-green-100 hover:to-emerald-100',
+                feature: 'sharedCalendar' as const
               },
               { 
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>, 
@@ -213,7 +216,8 @@ export default function Dashboard() {
                 color: 'orange',
                 gradient: 'from-orange-500 to-red-500',
                 bgGradient: 'from-orange-50 to-red-50',
-                hoverBg: 'hover:from-orange-100 hover:to-red-100'
+                hoverBg: 'hover:from-orange-100 hover:to-red-100',
+                feature: 'relationshipGoals' as const
               },
               { 
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>, 
@@ -222,27 +226,53 @@ export default function Dashboard() {
                 color: 'pink',
                 gradient: 'from-pink-500 to-rose-500',
                 bgGradient: 'from-pink-50 to-rose-50',
-                hoverBg: 'hover:from-pink-100 hover:to-rose-100'
+                hoverBg: 'hover:from-pink-100 hover:to-rose-100',
+                feature: 'personalizedSurprises' as const
               }
-            ].map((item, index) => (
-              <Link
-                key={index}
-                to={item.link}
-                className={`group relative overflow-hidden rounded-xl sm:rounded-2xl border-2 border-transparent hover:border-${item.color}-300 bg-gradient-to-br ${item.bgGradient} ${item.hoverBg} transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 hover:shadow-xl p-3 sm:p-6`}
-              >
-                <div className="text-center">
-                  <div className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-gradient-to-r ${item.gradient} rounded-xl sm:rounded-2xl flex items-center justify-center mb-2 sm:mb-4 mx-auto group-hover:scale-110 transition-transform shadow-lg group-hover:shadow-xl`}>
-                    <div className="text-white">{item.icon}</div>
-                  </div>
-                  <span className={`text-xs sm:text-sm font-bold text-${item.color}-700 dark:text-${item.color}-300 block leading-tight`}>
-                    {item.title}
-                  </span>
+            ].map((item, index) => {
+              const { hasFeature } = useSubscription();
+              const hasAccess = hasFeature(item.feature);
+              
+              return (
+                <div key={index} className="relative">
+                  {hasAccess ? (
+                    <Link
+                      to={item.link}
+                      className={`group relative overflow-hidden rounded-xl sm:rounded-2xl border-2 border-transparent hover:border-${item.color}-300 bg-gradient-to-br ${item.bgGradient} ${item.hoverBg} transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 hover:shadow-xl p-3 sm:p-6 block`}
+                    >
+                      <div className="text-center">
+                        <div className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-gradient-to-r ${item.gradient} rounded-xl sm:rounded-2xl flex items-center justify-center mb-2 sm:mb-4 mx-auto group-hover:scale-110 transition-transform shadow-lg group-hover:shadow-xl`}>
+                          <div className="text-white">{item.icon}</div>
+                        </div>
+                        <span className={`text-xs sm:text-sm font-bold text-${item.color}-700 dark:text-${item.color}-300 block leading-tight`}>
+                          {item.title}
+                        </span>
+                      </div>
+                      
+                      {/* Efeito de brilho no hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    </Link>
+                  ) : (
+                    <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border-2 border-neutral-200 dark:border-neutral-600 bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-700 dark:to-neutral-800 p-3 sm:p-6 opacity-60">
+                      <div className="absolute inset-0 bg-black/20 dark:bg-black/30 rounded-xl sm:rounded-2xl flex items-center justify-center">
+                        <div className="text-center text-neutral-600 dark:text-neutral-300">
+                          <div className="text-lg sm:text-xl mb-1">🔒</div>
+                          <div className="text-xs font-medium">Premium</div>
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-gradient-to-r from-neutral-400 to-neutral-500 rounded-xl sm:rounded-2xl flex items-center justify-center mb-2 sm:mb-4 mx-auto shadow-lg">
+                          <div className="text-white opacity-50">{item.icon}</div>
+                        </div>
+                        <span className="text-xs sm:text-sm font-bold text-neutral-500 dark:text-neutral-400 block leading-tight">
+                          {item.title}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
-                
-                {/* Efeito de brilho no hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-              </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -262,7 +292,8 @@ export default function Dashboard() {
                 description: 'Descubram as linguagens do amor de vocês',
                 color: 'from-purple-400 to-pink-400',
                 link: '/linguagens-do-amor',
-                badge: 'Popular'
+                badge: 'Popular',
+                feature: 'languagesOfLove' as const
               },
               {
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>,
@@ -270,7 +301,8 @@ export default function Dashboard() {
                 description: 'Suporte imediato para momentos difíceis',
                 color: 'from-red-500 to-red-600',
                 link: '/modo-crise',
-                badge: 'Urgente'
+                badge: 'Urgente',
+                feature: 'crisisMode' as const
               },
               {
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>,
@@ -278,7 +310,8 @@ export default function Dashboard() {
                 description: 'Conselhos e orientações personalizadas 24/7',
                 color: 'from-blue-500 to-cyan-500',
                 link: '/chat',
-                badge: 'Sempre Disponível'
+                badge: 'Sempre Disponível',
+                feature: 'unlimitedChat' as const
               },
               {
                 icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>,
@@ -286,34 +319,70 @@ export default function Dashboard() {
                 description: 'Estratégias personalizadas para seu relacionamento',
                 color: 'from-indigo-500 to-purple-500',
                 link: '/planos-acao',
-                badge: 'Personalizado'
+                badge: 'Personalizado',
+                feature: 'actionPlans' as const
               }
-            ].map((feature, index) => (
-              <Link 
-                key={index} 
-                to={feature.link}
-                className="group relative card-hover bg-white dark:bg-neutral-800 rounded-lg sm:rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-rose-300 dark:hover:border-rose-500 p-3 sm:p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-glow"
-              >
-                <div className="absolute top-2 right-2 sm:top-3 sm:right-3">
-                  <span className={`${feature.color.includes('red') ? 'bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400' : feature.color.includes('amber') ? 'bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400' : 'bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400'} text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full`}>
-                    {feature.badge}
-                  </span>
+            ].map((feature, index) => {
+              const { hasFeature } = useSubscription();
+              const hasAccess = hasFeature(feature.feature);
+              
+              return (
+                <div key={index} className="relative">
+                  {hasAccess ? (
+                    <Link 
+                      to={feature.link}
+                      className="group relative card-hover bg-white dark:bg-neutral-800 rounded-lg sm:rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-rose-300 dark:hover:border-rose-500 p-3 sm:p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-glow block"
+                    >
+                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3">
+                        <span className={`${feature.color.includes('red') ? 'bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400' : feature.color.includes('amber') ? 'bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400' : 'bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400'} text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full`}>
+                          {feature.badge}
+                        </span>
+                      </div>
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${feature.color} rounded-lg sm:rounded-xl flex items-center justify-center shadow-md mb-2 sm:mb-3 group-hover:scale-110 transition-transform`}>
+                        <div className="text-white">{feature.icon}</div>
+                      </div>
+                      <h3 className="text-xs sm:text-sm font-bold font-display text-neutral-900 dark:text-neutral-100 mb-1 sm:mb-2 group-hover:text-rose-700 dark:group-hover:text-rose-300 transition-colors leading-tight">
+                        {feature.title}
+                      </h3>
+                      <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed mb-2 sm:mb-3">
+                        {feature.description}
+                      </p>
+                      <div className="flex items-center text-rose-600 dark:text-rose-400 font-medium text-xs">
+                        <span>Acessar</span>
+                        <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="relative bg-neutral-100 dark:bg-neutral-700 rounded-lg sm:rounded-xl border border-neutral-200 dark:border-neutral-600 p-3 sm:p-4 opacity-75">
+                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3">
+                        <span className="bg-neutral-200 dark:bg-neutral-600 text-neutral-500 dark:text-neutral-400 text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">
+                          Premium
+                        </span>
+                      </div>
+                      <div className="absolute inset-0 bg-black/10 dark:bg-black/20 rounded-lg sm:rounded-xl flex items-center justify-center">
+                        <div className="text-center text-neutral-600 dark:text-neutral-300">
+                          <div className="text-2xl mb-1">🔒</div>
+                          <div className="text-xs font-medium">Bloqueado</div>
+                        </div>
+                      </div>
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-neutral-400 to-neutral-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-md mb-2 sm:mb-3">
+                        <div className="text-white opacity-50">{feature.icon}</div>
+                      </div>
+                      <h3 className="text-xs sm:text-sm font-bold font-display text-neutral-500 dark:text-neutral-400 mb-1 sm:mb-2 leading-tight">
+                        {feature.title}
+                      </h3>
+                      <p className="text-neutral-500 dark:text-neutral-500 text-xs leading-relaxed mb-2 sm:mb-3">
+                        {feature.description}
+                      </p>
+                      <div className="flex items-center text-neutral-400 dark:text-neutral-500 font-medium text-xs">
+                        <span>Fazer Upgrade</span>
+                        <span className="ml-1">💎</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${feature.color} rounded-lg sm:rounded-xl flex items-center justify-center shadow-md mb-2 sm:mb-3 group-hover:scale-110 transition-transform`}>
-                  <div className="text-white">{feature.icon}</div>
-                </div>
-                <h3 className="text-xs sm:text-sm font-bold font-display text-neutral-900 dark:text-neutral-100 mb-1 sm:mb-2 group-hover:text-rose-700 dark:group-hover:text-rose-300 transition-colors leading-tight">
-                  {feature.title}
-                </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed mb-2 sm:mb-3">
-                  {feature.description}
-                </p>
-                <div className="flex items-center text-rose-600 dark:text-rose-400 font-medium text-xs">
-                  <span>Acessar</span>
-                  <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
-                </div>
-              </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -457,7 +526,9 @@ export default function Dashboard() {
 
         {/* Smart Reminders Widget */}
         <div className="mb-6">
-          <SmartRemindersWidget />
+          <FeatureGuard feature="smartReminders">
+            <SmartRemindersWidget />
+          </FeatureGuard>
         </div>
 
       </div>
